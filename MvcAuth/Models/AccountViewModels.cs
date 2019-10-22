@@ -8,6 +8,18 @@ namespace MvcAuth.Models
         [Required]
         [Display(Name = "Correo electrónico")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Username")]
+        public string Username   { get; set; }
+
+        [Required]
+        [Display(Name = "Nombres")]
+        public string Nombres { get; set; }
+
+        [Required]
+        [Display(Name = "Apellidos")]
+        public string Apellidos { get; set; }
     }
 
     public class ExternalLoginListViewModel
