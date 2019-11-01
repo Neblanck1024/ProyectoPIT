@@ -12,6 +12,8 @@ namespace MvcAuth.Datos
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class BD_PITEntities : DbContext
     {
@@ -25,5 +27,76 @@ namespace MvcAuth.Datos
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TB_DEPARTAMENTO> TB_DEPARTAMENTO { get; set; }
+        public virtual DbSet<TB_DISTRITO> TB_DISTRITO { get; set; }
+        public virtual DbSet<TB_TIPODEPARTAMENTO> TB_TIPODEPARTAMENTO { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
+    
+        public virtual int sp_InsertaDep(string nOM_DEP, Nullable<int> tIP_DEP, Nullable<int> nRO_PISO, Nullable<int> nUM_HABI, Nullable<decimal> pRECIO, byte[] fOTO, Nullable<int> dISTRITO, string iD)
+        {
+            var nOM_DEPParameter = nOM_DEP != null ?
+                new ObjectParameter("NOM_DEP", nOM_DEP) :
+                new ObjectParameter("NOM_DEP", typeof(string));
+    
+            var tIP_DEPParameter = tIP_DEP.HasValue ?
+                new ObjectParameter("TIP_DEP", tIP_DEP) :
+                new ObjectParameter("TIP_DEP", typeof(int));
+    
+            var nRO_PISOParameter = nRO_PISO.HasValue ?
+                new ObjectParameter("NRO_PISO", nRO_PISO) :
+                new ObjectParameter("NRO_PISO", typeof(int));
+    
+            var nUM_HABIParameter = nUM_HABI.HasValue ?
+                new ObjectParameter("NUM_HABI", nUM_HABI) :
+                new ObjectParameter("NUM_HABI", typeof(int));
+    
+            var pRECIOParameter = pRECIO.HasValue ?
+                new ObjectParameter("PRECIO", pRECIO) :
+                new ObjectParameter("PRECIO", typeof(decimal));
+    
+            var fOTOParameter = fOTO != null ?
+                new ObjectParameter("FOTO", fOTO) :
+                new ObjectParameter("FOTO", typeof(byte[]));
+    
+            var dISTRITOParameter = dISTRITO.HasValue ?
+                new ObjectParameter("DISTRITO", dISTRITO) :
+                new ObjectParameter("DISTRITO", typeof(int));
+    
+            var iDParameter = iD != null ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaDep", nOM_DEPParameter, tIP_DEPParameter, nRO_PISOParameter, nUM_HABIParameter, pRECIOParameter, fOTOParameter, dISTRITOParameter, iDParameter);
+        }
+    
+        public virtual ObjectResult<SP_LISTADODEPA_Result> SP_LISTADODEPA()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_LISTADODEPA_Result>("SP_LISTADODEPA");
+        }
+    
+        public virtual ObjectResult<SP_LISTADODISTRITOS_Result> SP_LISTADODISTRITOS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_LISTADODISTRITOS_Result>("SP_LISTADODISTRITOS");
+        }
+    
+        public virtual ObjectResult<SP_LISTADOTIPO_Result> SP_LISTADOTIPO()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_LISTADOTIPO_Result>("SP_LISTADOTIPO");
+        }
+    
+        public virtual ObjectResult<SP_LISTARUSUARIOXCOD_Result> SP_LISTARUSUARIOXCOD(string cOD)
+        {
+            var cODParameter = cOD != null ?
+                new ObjectParameter("COD", cOD) :
+                new ObjectParameter("COD", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_LISTARUSUARIOXCOD_Result>("SP_LISTARUSUARIOXCOD", cODParameter);
+        }
     }
 }

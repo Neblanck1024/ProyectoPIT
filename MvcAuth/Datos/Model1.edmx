@@ -4,20 +4,692 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BD_PITModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="BD_PITModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="BD_PITModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar(max)" />
+          <Property Name="Apellidos" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TB_DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="COD_DEP" />
+          </Key>
+          <Property Name="COD_DEP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_DEP" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="TIP_DEP" Type="int" Nullable="false" />
+          <Property Name="NRO_PISO" Type="int" Nullable="false" />
+          <Property Name="NUM_HABITACIONES" Type="int" Nullable="false" />
+          <Property Name="PRECIO" Type="money" Nullable="false" />
+          <Property Name="FOTO" Type="varbinary(max)" />
+          <Property Name="DISTRITO" Type="int" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_DISTRITO">
+          <Key>
+            <PropertyRef Name="COD_DIS" />
+          </Key>
+          <Property Name="COD_DIS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_DIS" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_TIPODEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="COD_TIPDEP" />
+          </Key>
+          <Property Name="COD_TIPDEP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_TIPDEP" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="nombres" Type="nvarchar(max)" />
+          <Property Name="apellidos" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" />
+          <Property Name="username" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__TB_DEPART__DISTR__7D439ABD">
+          <End Role="TB_DISTRITO" Type="Self.TB_DISTRITO" Multiplicity="1" />
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DISTRITO">
+              <PropertyRef Name="COD_DIS" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="DISTRITO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPART__TIP_D__7C4F7684">
+          <End Role="TB_TIPODEPARTAMENTO" Type="Self.TB_TIPODEPARTAMENTO" Multiplicity="1" />
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPODEPARTAMENTO">
+              <PropertyRef Name="COD_TIPDEP" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="TIP_DEP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPARTAME__ID__7E37BEF6">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_InsertaDep" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOM_DEP" Type="varchar" Mode="In" />
+          <Parameter Name="TIP_DEP" Type="int" Mode="In" />
+          <Parameter Name="NRO_PISO" Type="int" Mode="In" />
+          <Parameter Name="NUM_HABI" Type="int" Mode="In" />
+          <Parameter Name="PRECIO" Type="money" Mode="In" />
+          <Parameter Name="FOTO" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="DISTRITO" Type="int" Mode="In" />
+          <Parameter Name="ID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_LISTADODEPA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTADODISTRITOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTADOTIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTARUSUARIOXCOD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="BD_PITModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_DEPARTAMENTO" EntityType="Self.TB_DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_DISTRITO" EntityType="Self.TB_DISTRITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TIPODEPARTAMENTO" EntityType="Self.TB_TIPODEPARTAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TB_DEPART__DISTR__7D439ABD" Association="Self.FK__TB_DEPART__DISTR__7D439ABD">
+            <End Role="TB_DISTRITO" EntitySet="TB_DISTRITO" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPART__TIP_D__7C4F7684" Association="Self.FK__TB_DEPART__TIP_D__7C4F7684">
+            <End Role="TB_TIPODEPARTAMENTO" EntitySet="TB_TIPODEPARTAMENTO" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPARTAME__ID__7E37BEF6" Association="Self.FK__TB_DEPARTAME__ID__7E37BEF6">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BD_PITModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="BD_PITEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="BD_PITEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="C__MigrationHistory" EntityType="BD_PITModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="BD_PITModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="BD_PITModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="BD_PITModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="BD_PITModel.AspNetUsers" />
+          <EntitySet Name="sysdiagrams" EntityType="BD_PITModel.sysdiagrams" />
+          <EntitySet Name="TB_DEPARTAMENTO" EntityType="BD_PITModel.TB_DEPARTAMENTO" />
+          <EntitySet Name="TB_DISTRITO" EntityType="BD_PITModel.TB_DISTRITO" />
+          <EntitySet Name="TB_TIPODEPARTAMENTO" EntityType="BD_PITModel.TB_TIPODEPARTAMENTO" />
+          <EntitySet Name="Usuarios" EntityType="BD_PITModel.Usuarios" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="BD_PITModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="BD_PITModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPARTAME__ID__7E37BEF6" Association="BD_PITModel.FK__TB_DEPARTAME__ID__7E37BEF6">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPART__DISTR__7D439ABD" Association="BD_PITModel.FK__TB_DEPART__DISTR__7D439ABD">
+            <End Role="TB_DISTRITO" EntitySet="TB_DISTRITO" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPART__TIP_D__7C4F7684" Association="BD_PITModel.FK__TB_DEPART__TIP_D__7C4F7684">
+            <End Role="TB_TIPODEPARTAMENTO" EntitySet="TB_TIPODEPARTAMENTO" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="BD_PITModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <FunctionImport Name="sp_InsertaDep">
+            <Parameter Name="NOM_DEP" Mode="In" Type="String" />
+            <Parameter Name="TIP_DEP" Mode="In" Type="Int32" />
+            <Parameter Name="NRO_PISO" Mode="In" Type="Int32" />
+            <Parameter Name="NUM_HABI" Mode="In" Type="Int32" />
+            <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="FOTO" Mode="In" Type="Binary" />
+            <Parameter Name="DISTRITO" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LISTADODEPA" ReturnType="Collection(BD_PITModel.SP_LISTADODEPA_Result)" />
+          <FunctionImport Name="SP_LISTADODISTRITOS" ReturnType="Collection(BD_PITModel.SP_LISTADODISTRITOS_Result)" />
+          <FunctionImport Name="SP_LISTADOTIPO" ReturnType="Collection(BD_PITModel.SP_LISTADOTIPO_Result)" />
+          <FunctionImport Name="SP_LISTARUSUARIOXCOD" ReturnType="Collection(BD_PITModel.SP_LISTARUSUARIOXCOD_Result)">
+            <Parameter Name="COD" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BD_PITModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BD_PITModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BD_PITModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Apellidos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="BD_PITModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="BD_PITModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="BD_PITModel.FK__TB_DEPARTAME__ID__7E37BEF6" FromRole="AspNetUsers" ToRole="TB_DEPARTAMENTO" />
+          <NavigationProperty Name="AspNetRoles" Relationship="BD_PITModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TB_DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="COD_DEP" />
+          </Key>
+          <Property Name="COD_DEP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_DEP" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="TIP_DEP" Type="Int32" Nullable="false" />
+          <Property Name="NRO_PISO" Type="Int32" Nullable="false" />
+          <Property Name="NUM_HABITACIONES" Type="Int32" Nullable="false" />
+          <Property Name="PRECIO" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DISTRITO" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BD_PITModel.FK__TB_DEPARTAME__ID__7E37BEF6" FromRole="TB_DEPARTAMENTO" ToRole="AspNetUsers" />
+          <NavigationProperty Name="TB_DISTRITO" Relationship="BD_PITModel.FK__TB_DEPART__DISTR__7D439ABD" FromRole="TB_DEPARTAMENTO" ToRole="TB_DISTRITO" />
+          <NavigationProperty Name="TB_TIPODEPARTAMENTO" Relationship="BD_PITModel.FK__TB_DEPART__TIP_D__7C4F7684" FromRole="TB_DEPARTAMENTO" ToRole="TB_TIPODEPARTAMENTO" />
+        </EntityType>
+        <EntityType Name="TB_DISTRITO">
+          <Key>
+            <PropertyRef Name="COD_DIS" />
+          </Key>
+          <Property Name="COD_DIS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_DIS" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="BD_PITModel.FK__TB_DEPART__DISTR__7D439ABD" FromRole="TB_DISTRITO" ToRole="TB_DEPARTAMENTO" />
+        </EntityType>
+        <EntityType Name="TB_TIPODEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="COD_TIPDEP" />
+          </Key>
+          <Property Name="COD_TIPDEP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_TIPDEP" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="BD_PITModel.FK__TB_DEPART__TIP_D__7C4F7684" FromRole="TB_TIPODEPARTAMENTO" ToRole="TB_DEPARTAMENTO" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="apellidos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="BD_PITModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_PITModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="BD_PITModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_PITModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPARTAME__ID__7E37BEF6">
+          <End Type="BD_PITModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="BD_PITModel.TB_DEPARTAMENTO" Role="TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPART__DISTR__7D439ABD">
+          <End Type="BD_PITModel.TB_DISTRITO" Role="TB_DISTRITO" Multiplicity="1" />
+          <End Type="BD_PITModel.TB_DEPARTAMENTO" Role="TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DISTRITO">
+              <PropertyRef Name="COD_DIS" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="DISTRITO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPART__TIP_D__7C4F7684">
+          <End Type="BD_PITModel.TB_TIPODEPARTAMENTO" Role="TB_TIPODEPARTAMENTO" Multiplicity="1" />
+          <End Type="BD_PITModel.TB_DEPARTAMENTO" Role="TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPODEPARTAMENTO">
+              <PropertyRef Name="COD_TIPDEP" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="TIP_DEP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="BD_PITModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="BD_PITModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+        <ComplexType Name="SP_LISTADODEPA_Result">
+          <Property Type="String" Name="NOM_DEP" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="NRO_PISO" Nullable="false" />
+          <Property Type="Int32" Name="NUM_HABITACIONES" Nullable="false" />
+          <Property Type="Decimal" Name="PRECIO" Nullable="false" Precision="19" />
+          <Property Type="Binary" Name="FOTO" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTADODISTRITOS_Result">
+          <Property Type="Int32" Name="COD_DIS" Nullable="false" />
+          <Property Type="String" Name="NOM_DIS" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTADOTIPO_Result">
+          <Property Type="Int32" Name="COD_TIPDEP" Nullable="false" />
+          <Property Type="String" Name="NOM_TIPDEP" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTARUSUARIOXCOD_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Nombres" Nullable="true" />
+          <Property Type="String" Name="Apellidos" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BD_PITModelStoreContainer" CdmEntityContainer="BD_PITEntities" />
+        <EntityContainerMapping StorageEntityContainer="BD_PITModelStoreContainer" CdmEntityContainer="BD_PITEntities" >
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="BD_PITModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="BD_PITModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="BD_PITModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="BD_PITModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="BD_PITModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BD_PITModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_DEPARTAMENTO">
+            <EntityTypeMapping TypeName="BD_PITModel.TB_DEPARTAMENTO">
+              <MappingFragment StoreEntitySet="TB_DEPARTAMENTO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="NUM_HABITACIONES" ColumnName="NUM_HABITACIONES" />
+                <ScalarProperty Name="NRO_PISO" ColumnName="NRO_PISO" />
+                <ScalarProperty Name="TIP_DEP" ColumnName="TIP_DEP" />
+                <ScalarProperty Name="NOM_DEP" ColumnName="NOM_DEP" />
+                <ScalarProperty Name="COD_DEP" ColumnName="COD_DEP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_DISTRITO">
+            <EntityTypeMapping TypeName="BD_PITModel.TB_DISTRITO">
+              <MappingFragment StoreEntitySet="TB_DISTRITO">
+                <ScalarProperty Name="NOM_DIS" ColumnName="NOM_DIS" />
+                <ScalarProperty Name="COD_DIS" ColumnName="COD_DIS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TIPODEPARTAMENTO">
+            <EntityTypeMapping TypeName="BD_PITModel.TB_TIPODEPARTAMENTO">
+              <MappingFragment StoreEntitySet="TB_TIPODEPARTAMENTO">
+                <ScalarProperty Name="NOM_TIPDEP" ColumnName="NOM_TIPDEP" />
+                <ScalarProperty Name="COD_TIPDEP" ColumnName="COD_TIPDEP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="BD_PITModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="BD_PITModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_InsertaDep" FunctionName="BD_PITModel.Store.sp_InsertaDep" />
+          <FunctionImportMapping FunctionImportName="SP_LISTADODEPA" FunctionName="BD_PITModel.Store.SP_LISTADODEPA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTADODEPA_Result">
+                <ScalarProperty Name="NOM_DEP" ColumnName="NOM_DEP" />
+                <ScalarProperty Name="NRO_PISO" ColumnName="NRO_PISO" />
+                <ScalarProperty Name="NUM_HABITACIONES" ColumnName="NUM_HABITACIONES" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTADODISTRITOS" FunctionName="BD_PITModel.Store.SP_LISTADODISTRITOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTADODISTRITOS_Result">
+                <ScalarProperty Name="COD_DIS" ColumnName="COD_DIS" />
+                <ScalarProperty Name="NOM_DIS" ColumnName="NOM_DIS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTADOTIPO" FunctionName="BD_PITModel.Store.SP_LISTADOTIPO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTADOTIPO_Result">
+                <ScalarProperty Name="COD_TIPDEP" ColumnName="COD_TIPDEP" />
+                <ScalarProperty Name="NOM_TIPDEP" ColumnName="NOM_TIPDEP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTARUSUARIOXCOD" FunctionName="BD_PITModel.Store.SP_LISTARUSUARIOXCOD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTARUSUARIOXCOD_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
