@@ -1,0 +1,87 @@
+﻿@model MvcAuth.Datos.TB_DEPARTAMENTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div style="text-align:center">
+    <h4>TB_DEPARTAMENTO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model.NOM_DEP)
+        </dd>
+
+        <dd>
+            <img width="500" height="500" src="@Url.Action("convertirImagen", "Home", new {codigoDepa = Model.COD_DEP})" />
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tipo de Departamento")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TB_TIPODEPARTAMENTO.NOM_TIPDEP)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Número de Pisos")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NRO_PISO)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Número de Habitaciones")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUM_HABITACIONES)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Precio")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRECIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DISTRITO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TB_DISTRITO.NOM_DIS)
+        </dd>
+
+
+    </dl>
+    <button type="button" class="modal-link btn btn-success"
+            data-toggle="modal" data-target="#modal-container"
+            style="font-size: 17px;">
+        Contactar    </button>
+
+    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <label for="comment">Mensaje:</label>
+                    
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                    <textarea class="form-control" rows="10" placeholder="Máximo 500 caracteres"  id="text-content" style="width: 100%;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

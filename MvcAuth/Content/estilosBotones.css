@@ -1,0 +1,31 @@
+﻿#Facebook {
+    background-color: #2645f8;
+    color: aliceblue;
+    border-color: #0026ff;
+    font-size:1.5em;
+    margin: 20px;
+    padding:10px 0px;
+    width:250px;
+}
+
+    #Facebook:hover {
+        background-color: aliceblue;
+        color: #0026ff;
+        border-color: #0026ff;
+    }
+
+
+#Google {
+    background-color: #f62323;
+    color: aliceblue;
+    border-color: #ff0000;
+    font-size: 1.5em;
+    margin: 20px;
+    padding: 10px 0px;
+    width: 250px;
+}
+        #Google:hover {
+            background-color: aliceblue;
+            color: #ff0000;
+            border-color: #ff0000;
+        }

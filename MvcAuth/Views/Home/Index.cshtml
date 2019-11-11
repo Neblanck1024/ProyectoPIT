@@ -1,58 +1,33 @@
-﻿@model MvcAuth.Models.TipoDepartamento
-
-
+﻿@model MvcAuth.Models.Departamento
 <!-- Masthead -->
 <header class="masthead">
     <div class="container h-100">
-        <div class="row h-100 align-items-center justify-content-center text-center">
-            <div class="col-lg-10 align-self-end">
-                <h1 class="text-uppercase text-white font-weight-bold">Encuentra tu mejor experiencia!</h1>
-                <hr class="divider my-4">
-            </div>
-            <div class="col-lg-8 align-self-baseline">
-                <p class="text-white-75 font-weight-light mb-5">Es fácil, solo dirigete a nuestras ofertas!</p>
+            <div class="">
                 <br /><br />
-                <div class="form-group">
-                    @Html.Label("Tipo de Departamento", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @try
-                        {
-                            @Html.DropDownListFor(model => model.codigo, ViewBag.tipo as SelectList, "Seleccione", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
-                        }
-
-                        catch (Exception)
-                        {
-                        }
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.Label("Distrito", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @try
-                        {
-                            @Html.DropDownListFor(MvcAuth.Models.Distrito. => model2.codigo, ViewBag.tipo as SelectList, "Seleccione", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
-                        }
-
-                        catch (Exception)
-                        {
-                        }
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="name" value="" class="form-control" placeholder="Buscar por descripción o código" />
+                <div class="col-lg-10 align-self-end">
+                    <h1 class="text-uppercase text-info font-weight-bold">Encuentra tu mejor experiencia!</h1>
+                    <hr class="divider my-auto">
                 </div>
                 <div>
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#">Buscar</a>
-                </div>
-            </div>
+                    <p class="text-white-75 font-weight-light mb-5">Es fácil, solo dirigete a nuestras ofertas!</p>
+                    <br /><br />
+                          <div style="display: flex; text-align:center;">
+                              @using (Html.BeginForm("ListadoDepartamentos", "Home"))
+                              {
+                                  @Html.DropDownList("idT", ViewBag.tipo as SelectList, "Tipo de Departamento", new { @class = "custom-select" })
 
+                                  @Html.DropDownList("idD", ViewBag.distrito as SelectList, "Distrito", new { @class = "custom-select" })
+                                  <input type="text" name="nom" value="@ViewBag.nomdep" class="form-control" placeholder="Buscar por descripción o código" />
+                                  @*<a class="btn btn-primary btn-xl js-scroll-trigger" href="Buscar/ListadoDepartamentos?nom=Dep" style="margin-top: -10px;">Buscar</a>*@
+
+                                  <input type="submit" class="btn btn-primary btn-xl js-scroll-trigger" value="Buscar" />
+                                  }
+                              </div>
+                </div>
         </div>
     </div>
 </header>
+
 <!-- Portfolio Section -->
 <section id="portfolio">
     <div style="background: black;">

@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Data;
 using System.Web.Helpers;
+using MvcAuth.Datos;
 
 namespace MvcAuth.Controllers
 {
@@ -18,6 +19,7 @@ namespace MvcAuth.Controllers
     {
         //2. Definir la cadena de conexion
         SqlConnection cn = new SqlConnection("server=.;database=BD_PIT; uid=sa; pwd=sql");
+        BD_PITEntities storeDB = new BD_PITEntities();
 
         //3. Definir la lista de vendedores
         List<Departamento> Departamentos()
@@ -80,7 +82,7 @@ namespace MvcAuth.Controllers
             return aTipos;
         }
         // GET: Departamento
-        public ActionResult Index(string id="")
+        public ActionResult Index()
         {
             return View(Departamentos());
         }
@@ -100,6 +102,7 @@ namespace MvcAuth.Controllers
             WebImage image = new WebImage(FileBase.InputStream);
 
             objD.foto = image.GetBytes();
+            objD.idUsuario = "f758a8fc-0798-4c91-8f44-d5bee1d4c0a8";
 
             if (!ModelState.IsValid)
             {

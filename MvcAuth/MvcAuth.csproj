@@ -256,6 +256,7 @@
   <ItemGroup>
     <Content Include="Content\css\creative.css" />
     <Content Include="Content\css\creative.min.css" />
+    <Content Include="Content\estilosBotones.css" />
     <Content Include="Content\img\bg-masthead.jpg" />
     <Content Include="Content\img\portfolio\fullsize\1.jpg" />
     <Content Include="Content\img\portfolio\fullsize\2.jpg" />
@@ -397,6 +398,8 @@
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Departamento\Crear.cshtml" />
+    <Content Include="Views\Home\ListadoDepartamentos.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

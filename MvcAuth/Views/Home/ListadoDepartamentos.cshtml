@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MvcAuth.Datos.TB_DEPARTAMENTO>
+
+@{
+    ViewBag.Title = "ListadoDepartamentos";
+}
+
+<h2>ListadoDepartamentos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.COD_DEP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOM_DEP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIP_DEP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NRO_PISO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NUM_HABITACIONES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRECIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DISTRITO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FOTO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.COD_DEP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOM_DEP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TB_TIPODEPARTAMENTO.NOM_TIPDEP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NRO_PISO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NUM_HABITACIONES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRECIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TB_DISTRITO.NOM_DIS)
+        </td>
+        <td>
+            <img width="150" height="150" src="@Url.Action("convertirImagen", "Home", new {codigoDepa = item.COD_DEP})" />
+        </td>
+        <td>
+            @Html.ActionLink("Detalle", "Details", new { id = item.COD_DEP }) 
+        </td>
+    </tr>
+}
+
+</table>
