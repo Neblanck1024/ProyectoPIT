@@ -15,6 +15,7 @@ using MvcAuth.Datos;
 
 namespace MvcAuth.Controllers
 {
+    [Authorize]
     public class DepartamentoController : Controller
     {
         //2. Definir la cadena de conexion
@@ -95,14 +96,17 @@ namespace MvcAuth.Controllers
         }
 
         [HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Authorize(Users = "Usuario1, Usuario2")]
         public ActionResult Crear(Departamento objD)
         {
+            var userId = User.Identity.GetUserId();
             HttpPostedFileBase FileBase = Request.Files[0];
 
             WebImage image = new WebImage(FileBase.InputStream);
 
             objD.foto = image.GetBytes();
-            objD.idUsuario = "f758a8fc-0798-4c91-8f44-d5bee1d4c0a8";
+            objD.idUsuario = userId;
 
             if (!ModelState.IsValid)
             {

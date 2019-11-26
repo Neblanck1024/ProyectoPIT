@@ -11,13 +11,13 @@
                 <div>
                     <p class="text-white-75 font-weight-light mb-5">Es fácil, solo dirigete a nuestras ofertas!</p>
                     <br /><br />
-                          <div style="display: flex; text-align:center;">
-                              @using (Html.BeginForm("ListadoDepartamentos", "Home"))
+                          <div style="border:dotted 2px #297789; border-collapse:separate; border-spacing:100px;">
+                              @using (Html.BeginForm("ListadoDepartamentos", "Home", FormMethod.Post, new { style = "display:flex; padding:20px;" }))
                               {
-                                  @Html.DropDownList("idT", ViewBag.tipo as SelectList, "Tipo de Departamento", new { @class = "custom-select" })
+                                  @Html.DropDownList("idT", ViewBag.tipo as SelectList, "Tipo de Departamento", new { style = "margin:auto 5px;", @class = "custom-select" })
 
-                                  @Html.DropDownList("idD", ViewBag.distrito as SelectList, "Distrito", new { @class = "custom-select" })
-                                  <input type="text" name="nom" value="@ViewBag.nomdep" class="form-control" placeholder="Buscar por descripción o código" />
+                                  @Html.DropDownList("idD", ViewBag.distrito as SelectList, "Distrito", new { style = "margin:auto 5px;", @class = "custom-select" })
+                                  <input type="text" name="nom" value="@ViewBag.nomdep" class="form-control" placeholder="Buscar por descripción o código" style="width:100%; margin:auto 5px;"/>
                                   @*<a class="btn btn-primary btn-xl js-scroll-trigger" href="Buscar/ListadoDepartamentos?nom=Dep" style="margin-top: -10px;">Buscar</a>*@
 
                                   <input type="submit" class="btn btn-primary btn-xl js-scroll-trigger" value="Buscar" />
