@@ -330,6 +330,10 @@ namespace MvcAuth.Controllers
 
             // Si el usuario ya tiene un inicio de sesión, iniciar sesión del usuario con este proveedor de inicio de sesión externo
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+
+            String completo = loginInfo.ExternalIdentity.Name;
+            String[] cadena = System.Text.RegularExpressions.Regex.Split(completo, " ");
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -343,7 +347,7 @@ namespace MvcAuth.Controllers
                     // Si el usuario no tiene ninguna cuenta, solicitar que cree una
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email, Nombres = cadena[0], Apellidos = cadena[1] });
             }
         }
 

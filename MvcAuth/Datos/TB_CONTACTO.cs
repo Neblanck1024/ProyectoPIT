@@ -22,8 +22,10 @@ namespace MvcAuth.Datos
         public string TEL_CON { get; set; }
         public string TEXT_CON { get; set; }
         public string ESTADO { get; set; }
+        public int COD_DEP { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual AspNetUsers AspNetUsers1 { get; set; }
+        public virtual TB_DEPARTAMENTO TB_DEPARTAMENTO { get; set; }
     }
 }

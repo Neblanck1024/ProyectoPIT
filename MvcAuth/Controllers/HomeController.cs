@@ -111,15 +111,50 @@ namespace MvcAuth.Controllers
             ViewBag.distrito = new SelectList(storeDB.TB_DISTRITO.ToList(), "COD_DIS", "NOM_DIS",idD);
             ViewBag.nomdep = nom;
 
-            var lista = from p in storeDB.TB_DEPARTAMENTO
-                        where p.NOM_DEP.StartsWith(nom) && p.TIP_DEP == idT && p.DISTRITO == idD
-                        select p;
+            //var lista = from p in storeDB.TB_DEPARTAMENTO
+            //            where p.NOM_DEP.StartsWith(nom) &&
+            //            p.TIP_DEP == idT ||
+            //            p.DISTRITO == idD
+            //            select p;
+
+            
+            var lista = storeDB.TB_DEPARTAMENTO.Where(x => x.NOM_DEP.StartsWith(nom) || x.TIP_DEP == idT || x.DISTRITO == idD);
+
             return View(lista.ToList());
         }
 
         public ActionResult Details(int? id = null)
         {
             return View(storeDB.TB_DEPARTAMENTO.Where(d => d.COD_DEP == id).FirstOrDefault());
+        }
+
+        public ActionResult Contacto(int? id = null)
+        {
+            var vm = new ContactDepViewModel()
+            {
+                contacto = storeDB.TB_CONTACTO.ToList().Where(d => d.COD_DEP == id).FirstOrDefault()
+
+            };
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult Contacto(TB_CONTACTO cont)
+        {
+
+            try
+            {
+                storeDB.TB_CONTACTO.Add(cont);
+                storeDB.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return View(cont);
         }
     }
 }

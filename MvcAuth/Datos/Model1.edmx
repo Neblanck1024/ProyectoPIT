@@ -90,6 +90,7 @@
           <Property Name="TEL_CON" Type="char" MaxLength="11" />
           <Property Name="TEXT_CON" Type="nvarchar(max)" />
           <Property Name="ESTADO" Type="char" MaxLength="1" />
+          <Property Name="COD_DEP" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TB_DEPARTAMENTO">
           <Key>
@@ -129,7 +130,7 @@
           <Property Name="email" Type="nvarchar(max)" />
           <Property Name="username" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__TB_CONTAC__COD_D__114A936A">
+        <Association Name="FK__TB_CONTAC__COD_D__160F4887">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,7 +142,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_CONTAC__COD_O__123EB7A3">
+        <Association Name="FK__TB_CONTAC__COD_D__18EBB532">
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="1" />
+          <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="COD_DEP" />
+            </Principal>
+            <Dependent Role="TB_CONTACTO">
+              <PropertyRef Name="COD_DEP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_CONTAC__COD_O__17036CC0">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -245,6 +258,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertaDep" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOM_DEP" Type="varchar" Mode="In" />
+          <Parameter Name="TIP_DEP" Type="int" Mode="In" />
+          <Parameter Name="NRO_PISO" Type="int" Mode="In" />
+          <Parameter Name="NUM_HABI" Type="int" Mode="In" />
+          <Parameter Name="PRECIO" Type="money" Mode="In" />
+          <Parameter Name="FOTO" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="DISTRITO" Type="int" Mode="In" />
+          <Parameter Name="ID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_LISTADODEPA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTADODISTRITOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTADOTIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTARUSUARIOXCOD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="BD_PITModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -258,11 +318,15 @@
           <EntitySet Name="TB_DISTRITO" EntityType="Self.TB_DISTRITO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_TIPODEPARTAMENTO" EntityType="Self.TB_TIPODEPARTAMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__TB_CONTAC__COD_D__114A936A" Association="Self.FK__TB_CONTAC__COD_D__114A936A">
+          <AssociationSet Name="FK__TB_CONTAC__COD_D__160F4887" Association="Self.FK__TB_CONTAC__COD_D__160F4887">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_CONTAC__COD_O__123EB7A3" Association="Self.FK__TB_CONTAC__COD_O__123EB7A3">
+          <AssociationSet Name="FK__TB_CONTAC__COD_D__18EBB532" Association="Self.FK__TB_CONTAC__COD_D__18EBB532">
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+            <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_CONTAC__COD_O__17036CC0" Association="Self.FK__TB_CONTAC__COD_O__17036CC0">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
           </AssociationSet>
@@ -359,8 +423,8 @@
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="TB_CONTACTO" Relationship="Self.FK__TB_CONTAC__COD_D__114A936A" FromRole="AspNetUsers" ToRole="TB_CONTACTO" />
-          <NavigationProperty Name="TB_CONTACTO1" Relationship="Self.FK__TB_CONTAC__COD_O__123EB7A3" FromRole="AspNetUsers" ToRole="TB_CONTACTO" />
+          <NavigationProperty Name="TB_CONTACTO" Relationship="Self.FK__TB_CONTAC__COD_D__160F4887" FromRole="AspNetUsers" ToRole="TB_CONTACTO" />
+          <NavigationProperty Name="TB_CONTACTO1" Relationship="Self.FK__TB_CONTAC__COD_O__17036CC0" FromRole="AspNetUsers" ToRole="TB_CONTACTO" />
           <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="Self.FK__TB_DEPARTAME__ID__7E37BEF6" FromRole="AspNetUsers" ToRole="TB_DEPARTAMENTO" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
@@ -386,8 +450,10 @@
           <Property Name="TEL_CON" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="TEXT_CON" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__TB_CONTAC__COD_D__114A936A" FromRole="TB_CONTACTO" ToRole="AspNetUsers" />
-          <NavigationProperty Name="AspNetUsers1" Relationship="Self.FK__TB_CONTAC__COD_O__123EB7A3" FromRole="TB_CONTACTO" ToRole="AspNetUsers" />
+          <Property Name="COD_DEP" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__TB_CONTAC__COD_D__160F4887" FromRole="TB_CONTACTO" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="Self.FK__TB_CONTAC__COD_O__17036CC0" FromRole="TB_CONTACTO" ToRole="AspNetUsers" />
+          <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="Self.FK__TB_CONTAC__COD_D__18EBB532" FromRole="TB_CONTACTO" ToRole="TB_DEPARTAMENTO" />
         </EntityType>
         <EntityType Name="TB_DEPARTAMENTO">
           <Key>
@@ -403,6 +469,7 @@
           <Property Name="DISTRITO" Type="Int32" Nullable="false" />
           <Property Name="ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__TB_DEPARTAME__ID__7E37BEF6" FromRole="TB_DEPARTAMENTO" ToRole="AspNetUsers" />
+          <NavigationProperty Name="TB_CONTACTO" Relationship="Self.FK__TB_CONTAC__COD_D__18EBB532" FromRole="TB_DEPARTAMENTO" ToRole="TB_CONTACTO" />
           <NavigationProperty Name="TB_DISTRITO" Relationship="Self.FK__TB_DEPART__DISTR__7D439ABD" FromRole="TB_DEPARTAMENTO" ToRole="TB_DISTRITO" />
           <NavigationProperty Name="TB_TIPODEPARTAMENTO" Relationship="Self.FK__TB_DEPART__TIP_D__7C4F7684" FromRole="TB_DEPARTAMENTO" ToRole="TB_TIPODEPARTAMENTO" />
         </EntityType>
@@ -460,7 +527,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_CONTAC__COD_D__114A936A">
+        <Association Name="FK__TB_CONTAC__COD_D__160F4887">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -472,7 +539,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_CONTAC__COD_O__123EB7A3">
+        <Association Name="FK__TB_CONTAC__COD_O__17036CC0">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -493,6 +560,18 @@
             </Principal>
             <Dependent Role="TB_DEPARTAMENTO">
               <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_CONTAC__COD_D__18EBB532">
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="1" />
+          <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="COD_DEP" />
+            </Principal>
+            <Dependent Role="TB_CONTACTO">
+              <PropertyRef Name="COD_DEP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -544,17 +623,21 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_CONTAC__COD_D__114A936A" Association="Self.FK__TB_CONTAC__COD_D__114A936A">
+          <AssociationSet Name="FK__TB_CONTAC__COD_D__160F4887" Association="Self.FK__TB_CONTAC__COD_D__160F4887">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_CONTAC__COD_O__123EB7A3" Association="Self.FK__TB_CONTAC__COD_O__123EB7A3">
+          <AssociationSet Name="FK__TB_CONTAC__COD_O__17036CC0" Association="Self.FK__TB_CONTAC__COD_O__17036CC0">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
           </AssociationSet>
           <AssociationSet Name="FK__TB_DEPARTAME__ID__7E37BEF6" Association="Self.FK__TB_DEPARTAME__ID__7E37BEF6">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_CONTAC__COD_D__18EBB532" Association="Self.FK__TB_CONTAC__COD_D__18EBB532">
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+            <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
           </AssociationSet>
           <AssociationSet Name="FK__TB_DEPART__DISTR__7D439ABD" Association="Self.FK__TB_DEPART__DISTR__7D439ABD">
             <End Role="TB_DISTRITO" EntitySet="TB_DISTRITO" />
@@ -568,7 +651,86 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BD_PITModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BD_PITModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertaDep">
+            <Parameter Name="NOM_DEP" Mode="In" Type="String" />
+            <Parameter Name="TIP_DEP" Mode="In" Type="Int32" />
+            <Parameter Name="NRO_PISO" Mode="In" Type="Int32" />
+            <Parameter Name="NUM_HABI" Mode="In" Type="Int32" />
+            <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="FOTO" Mode="In" Type="Binary" />
+            <Parameter Name="DISTRITO" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LISTADODEPA" ReturnType="Collection(BD_PITModel.SP_LISTADODEPA_Result)" />
+          <FunctionImport Name="SP_LISTADODISTRITOS" ReturnType="Collection(BD_PITModel.SP_LISTADODISTRITOS_Result)" />
+          <FunctionImport Name="SP_LISTADOTIPO" ReturnType="Collection(BD_PITModel.SP_LISTADOTIPO_Result)" />
+          <FunctionImport Name="SP_LISTARUSUARIOXCOD" ReturnType="Collection(BD_PITModel.SP_LISTARUSUARIOXCOD_Result)">
+            <Parameter Name="COD" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTADODEPA_Result">
+          <Property Type="String" Name="NOM_DEP" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="NRO_PISO" Nullable="false" />
+          <Property Type="Int32" Name="NUM_HABITACIONES" Nullable="false" />
+          <Property Type="Decimal" Name="PRECIO" Nullable="false" Precision="19" />
+          <Property Type="Binary" Name="FOTO" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTADODISTRITOS_Result">
+          <Property Type="Int32" Name="COD_DIS" Nullable="false" />
+          <Property Type="String" Name="NOM_DIS" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTADOTIPO_Result">
+          <Property Type="Int32" Name="COD_TIPDEP" Nullable="false" />
+          <Property Type="String" Name="NOM_TIPDEP" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTARUSUARIOXCOD_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Nombres" Nullable="true" />
+          <Property Type="String" Name="Apellidos" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -654,6 +816,7 @@
                 <ScalarProperty Name="TEL_CON" ColumnName="TEL_CON" />
                 <ScalarProperty Name="TEXT_CON" ColumnName="TEXT_CON" />
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="COD_DEP" ColumnName="COD_DEP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -707,6 +870,69 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BD_PITModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BD_PITModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="BD_PITModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="BD_PITModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="BD_PITModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_InsertaDep" FunctionName="BD_PITModel.Store.sp_InsertaDep" />
+          <FunctionImportMapping FunctionImportName="SP_LISTADODEPA" FunctionName="BD_PITModel.Store.SP_LISTADODEPA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTADODEPA_Result">
+                <ScalarProperty Name="NOM_DEP" ColumnName="NOM_DEP" />
+                <ScalarProperty Name="NRO_PISO" ColumnName="NRO_PISO" />
+                <ScalarProperty Name="NUM_HABITACIONES" ColumnName="NUM_HABITACIONES" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTADODISTRITOS" FunctionName="BD_PITModel.Store.SP_LISTADODISTRITOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTADODISTRITOS_Result">
+                <ScalarProperty Name="COD_DIS" ColumnName="COD_DIS" />
+                <ScalarProperty Name="NOM_DIS" ColumnName="NOM_DIS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTADOTIPO" FunctionName="BD_PITModel.Store.SP_LISTADOTIPO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTADOTIPO_Result">
+                <ScalarProperty Name="COD_TIPDEP" ColumnName="COD_TIPDEP" />
+                <ScalarProperty Name="NOM_TIPDEP" ColumnName="NOM_TIPDEP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTARUSUARIOXCOD" FunctionName="BD_PITModel.Store.SP_LISTARUSUARIOXCOD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTARUSUARIOXCOD_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BD_PITModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BD_PITModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

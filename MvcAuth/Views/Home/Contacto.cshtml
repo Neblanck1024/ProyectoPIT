@@ -1,0 +1,55 @@
+﻿@model MvcAuth.Datos.ContactDepViewModel
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ContactDepViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" id="edit-person">
+            <div id="edit-person-container" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <label for="comment" style="margin:auto;"><b>Necesito más información sobre el inmueble</b></label>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input placeholder="Ingrese su Codigo" name="txtCodigo" value="@Model.departamento.COD_DEP" class="e-input jv-alphanumeric form-control" style="width: 100%">
+                            </div>
+                            <div class="form-group">
+                                <input placeholder="Ingrese su nombre" name="txtName" value="" class="e-input jv-alphanumeric form-control" style="width: 100%">
+                            </div>
+                            <div class="form-group">
+                                <input placeholder="Ingrese su Email" name="txtEmail" value="" class="e-input jv-email form-control" style="width: 100%">
+                            </div>
+                            <div class="form-group">
+                                <input placeholder="Ingrese su teléfono" name="txtPhone" value="" class="e-input phone jv-phone form-control" style="width: 100%">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="10" placeholder="Máximo 500 caracteres" id="text-content" style="width: 100%;"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="modal-link btn btn-default"
+                                    data-toggle="modal" data-target="#modal-container"
+                                    style="font-size: 17px; margin:auto; width:100%; background-color:orangered;">
+                                Enviar<span class="icon-contact"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

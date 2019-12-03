@@ -14,6 +14,12 @@ namespace MvcAuth.Datos
     
     public partial class TB_DEPARTAMENTO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TB_DEPARTAMENTO()
+        {
+            this.TB_CONTACTO = new HashSet<TB_CONTACTO>();
+        }
+    
         public int COD_DEP { get; set; }
         public string NOM_DEP { get; set; }
         public int TIP_DEP { get; set; }
@@ -25,6 +31,8 @@ namespace MvcAuth.Datos
         public string ID { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TB_CONTACTO> TB_CONTACTO { get; set; }
         public virtual TB_DISTRITO TB_DISTRITO { get; set; }
         public virtual TB_TIPODEPARTAMENTO TB_TIPODEPARTAMENTO { get; set; }
     }
