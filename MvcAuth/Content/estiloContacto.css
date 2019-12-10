@@ -1,0 +1,60 @@
+﻿body {
+    background-color: lightgray;
+    font-family: Tahoma;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#columna1 {
+    margin: 0px;
+    float: left;
+    width: 70%;
+    text-align: center;
+}
+
+#columna2 {
+    margin: 0px;
+    float: right;
+    width: 30%;
+    padding: 0px;
+    background-color: gainsboro;
+}
+
+
+input,
+select,
+textarea {
+    width: 100%;
+}
+
+ul.nav.nav-tabs {
+    margin: 10px 0px;
+}
+
+    ul.nav.nav-tabs li:not(.active) a {
+        color: red;
+        background-color: antiquewhite;
+        text-decoration: none;
+        margin-right: 20px;
+    }
+
+    ul.nav.nav-tabs li.active a {
+        border-top: 3px solid #16a765;
+        text-decoration: none;
+    }
+
+.header {
+    color: #36A0FF;
+    font-size: 27px;
+    padding: 10px;
+}
+
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
+
+.texfor{
+    width:100%;
+}

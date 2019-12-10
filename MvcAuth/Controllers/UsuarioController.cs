@@ -59,7 +59,7 @@ namespace MvcAuth.Controllers
         }
 
         [HttpPost]
-        public ActionResult Actualizar([Bind(Include = "Id,Nombres,Apellidos,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUsers usu)
+        public ActionResult Actualizar([Bind(Include = "Id,Nombres,Apellidos,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Direccion,Genero,FechaNacimiento,Dni,EstadoCivil")] AspNetUsers usu)
         {
             db.Entry(usu).State=System.Data.Entity.EntityState.Modified;
             db.SaveChanges();

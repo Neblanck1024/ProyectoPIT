@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcAuth.Datos;
+using Microsoft.AspNet.Identity;
 
 namespace MvcAuth.Controllers
 { 
@@ -28,7 +29,7 @@ namespace MvcAuth.Controllers
                 Departamento objD = new Departamento
                 {
                     codigo = int.Parse(dr[0].ToString()),
-                    nombre = dr[1].ToString()
+                    titulo = dr[1].ToString()
                 };
                 tDep.Add(objD);
             }
@@ -116,45 +117,87 @@ namespace MvcAuth.Controllers
             //            p.TIP_DEP == idT ||
             //            p.DISTRITO == idD
             //            select p;
-
             
-            var lista = storeDB.TB_DEPARTAMENTO.Where(x => x.NOM_DEP.StartsWith(nom) || x.TIP_DEP == idT || x.DISTRITO == idD);
-
-            return View(lista.ToList());
+            if (ViewBag.tipo != null && ViewBag.distrito == null && ViewBag.nomdep == null)
+            {
+                var lista = storeDB.TB_DEPARTAMENTO.Where(x => x.TIP_DEP == idT);
+                return View(lista.ToList());
+            }
+            else if (ViewBag.tipo == null && ViewBag.distrito != null && ViewBag.nomdep == null)
+            {
+                var lista = storeDB.TB_DEPARTAMENTO.Where(x => x.TIP_DEP == idT);
+                return View(lista.ToList());
+            }
+            else
+            {
+                var lista = storeDB.TB_DEPARTAMENTO.Where(x => x.NOM_DEP.StartsWith(nom) || x.TIP_DEP == idT || x.DISTRITO == idD);
+                return View(lista.ToList());
+            }
         }
 
         public ActionResult Details(int? id = null)
         {
-            return View(storeDB.TB_DEPARTAMENTO.Where(d => d.COD_DEP == id).FirstOrDefault());
-        }
-
-        public ActionResult Contacto(int? id = null)
-        {
             var vm = new ContactDepViewModel()
             {
+                departamento = storeDB.TB_DEPARTAMENTO.ToList().Where(d => d.COD_DEP == id).FirstOrDefault(),
                 contacto = storeDB.TB_CONTACTO.ToList().Where(d => d.COD_DEP == id).FirstOrDefault()
-
             };
 
             return View(vm);
         }
 
-        [HttpPost]
-        public ActionResult Contacto(TB_CONTACTO cont)
+        
+        public ActionResult Contacto()
         {
+            return View(new ContactDepViewModel().contacto);
+        }
 
+
+        [HttpPost]
+        public ActionResult Contacto(ContactDepViewModel reg)
+        {
             try
             {
-                storeDB.TB_CONTACTO.Add(cont);
+                storeDB.TB_CONTACTO.Add(reg.contacto);
                 storeDB.SaveChanges();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-
-            return View(cont);
+            return RedirectToAction("Details", "Home", new { id= reg.contacto.COD_DEP });
         }
+
+        //public ActionResult Contacto(int? id = null)
+        //{
+        //    var vm = new ContactDepViewModel()
+        //    {
+        //        contacto = storeDB.TB_CONTACTO.ToList().Where(d => d.COD_DEP == id).FirstOrDefault()
+
+        //    };
+
+        //    return View(vm);
+        //}
+
+        //public ActionResult Contacto(TB_CONTACTO cont)
+        //{
+        //    var userId = User.Identity.GetUserId();
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        TB_CONTACTO obb = new TB_CONTACTO();
+        //        obb.COD_DEMA = userId;
+        //        obb.COD_OFER = cont.COD_OFER;
+        //        obb.NOM_CON = cont.NOM_CON;
+        //        obb.EMAIL_CON = cont.EMAIL_CON;
+        //        obb.TEL_CON = cont.TEL_CON;
+        //        obb.TEXT_CON = cont.TEXT_CON;
+        //        obb.ESTADO = cont.ESTADO;
+        //        obb.COD_DEP = cont.COD_DEP;
+        //        storeDB.TB_CONTACTO.Add(obb);
+        //        storeDB.SaveChanges();
+        //    }
+        //    return Json("success", JsonRequestBehavior.AllowGet);
+        //}
     }
 }

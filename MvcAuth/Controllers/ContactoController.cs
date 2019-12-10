@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using MvcAuth.Datos;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using MvcAuth.Models;
+
 namespace MvcAuth.Controllers
 {
     [Authorize]

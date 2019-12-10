@@ -1,131 +1,181 @@
-﻿@model MvcAuth.Datos.TB_DEPARTAMENTO
+﻿@model MvcAuth.Datos.ContactDepViewModel
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Details";
+    @Html.Partial("_Footer").Equals("");
 }
+<link href="~/Content/estiloContacto.css" rel="stylesheet" />
+<script src="~/Scripts/contacto.js"></script>
+<br /><br /><br /> <br /><br /><br />
+<div id="columna1" class="container" style="text-align:center; border:inset; padding:5px">
+    <p style="font-size:20px; font-weight:bold">@Html.DisplayFor(model => model.departamento.NOM_DEP)</p>
 
-
-
-<h2>Details</h2>
-
-<div style="text-align:center">
-    <h4>TB_DEPARTAMENTO</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dd>
-            @Html.DisplayFor(model => model.NOM_DEP)
-        </dd>
-
-        <dd>
-            <img width="500" height="500" src="@Url.Action("convertirImagen", "Home", new {codigoDepa = Model.COD_DEP})" />
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Tipo de Departamento")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TB_TIPODEPARTAMENTO.NOM_TIPDEP)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Número de Pisos")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NRO_PISO)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Número de Habitaciones")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NUM_HABITACIONES)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Precio")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PRECIO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DISTRITO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TB_DISTRITO.NOM_DIS)
-        </dd>
-
-
-    </dl>
-
-    <a data-toggle="modal" data-target="#myModal" href="@Url.Action("Contacto","Contacto")" class="btn btn-primary edit-radicado" data-id="@Model.COD_DEP">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true">Contactar</span>
-    </a>
-    <script>
-    $(".edit-radicado").click(function () {
-        var id = $(this).attr("data-id");
-        $.ajax({
-        url: '/Contacto/Contacto',
-        type: 'POST',
-        data: { recepcion: id },
-        success: function (data) {
-        alert(data);
-        //$(".edit-person-container").html(data);
-        $(".edit-person-container").load(data);
-        $(".edit-person").modal('show');
-        }
-        });
-    });
-    </script>
-
-    @*@Html.ActionLink("Detalle", "Details", new { id = Model.ID })
-        <button type="button" class="modal-link btn btn-success"
-                data-toggle="modal" data-target="#modal-container"
-                style="font-size: 17px;">
-            Contactar
-        </button>
-
-        <form action="/Contacto/Crear" method="post">
-            <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <label for="comment" style="margin:auto;"><b>Necesito más información sobre el inmueble</b></label>
-
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <input placeholder="Ingrese su Codigo" name="txtCodigo" value="@Model.ID" class="e-input jv-alphanumeric form-control" style="width: 100%">
-                            </div>
-                            <div class="form-group">
-                                <input placeholder="Ingrese su nombre" name="txtName" value="" class="e-input jv-alphanumeric form-control" style="width: 100%">
-                            </div>
-                            <div class="form-group">
-                                <input placeholder="Ingrese su Email" name="txtEmail" value="" class="e-input jv-email form-control" style="width: 100%">
-                            </div>
-                            <div class="form-group">
-                                <input placeholder="Ingrese su teléfono" name="txtPhone" value="" class="e-input phone jv-phone form-control" style="width: 100%">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" rows="10" placeholder="Máximo 500 caracteres" id="text-content" style="width: 100%;"></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="modal-link btn btn-default"
-                                    data-toggle="modal" data-target="#modal-container"
-                                    style="font-size: 17px; margin:auto; width:100%; background-color:orangered;">
-                                Enviar<span class="icon-contact"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        <img style="border:solid" width="800" height="500" src="@Url.Action("convertirImagen", "Home", new {codigoDepa = Model.departamento.COD_DEP})" />
+        <div style="">
+            <div style="margin:0px; float:left; width:50%">
+                <hr />
+                <ul style="list-style:none; color:#ff6a00">
+                    <li>@Html.DisplayName("Tipo de Departamento")</li>
+                    <hr />
+                    <li>@Html.DisplayName("Número de Pisos")</li>
+                    <hr />
+                    <li>@Html.DisplayName("Número de Habitaciones")</li>
+                    <hr />
+                    <li>@Html.DisplayName("Precio")</li>
+                    <hr />
+                    <li>@Html.DisplayName("Distrito")</li>
+                    <hr />
+                    <li>@Html.DisplayName("Dirección")</li>
+                    <hr />
+                    <li>@Html.DisplayName("Descripcion")</li>
+                    <hr />
+                    <li>@Html.DisplayName("Servicios")</li>
+                </ul>
             </div>
-        </form>*@
+
+            <div style="margin:0px; float:right; width:50%">
+                <hr />
+                <ul style="list-style:none; color:#326487">
+                    <li>@Html.DisplayFor(model => model.departamento.TB_TIPODEPARTAMENTO.NOM_TIPDEP)</li>
+                    <hr />
+                    <li>@Html.DisplayFor(model => model.departamento.NRO_PISO)</li>
+                    <hr />
+                    <li>@Html.DisplayFor(model => model.departamento.NUM_HABITACIONES)</li>
+                    <hr />
+                    <li>S/.@Html.DisplayFor(model => model.departamento.PRECIO)</li>
+                    <hr />
+                    <li>@Html.DisplayFor(model => model.departamento.TB_DISTRITO.NOM_DIS)</li>
+                    <hr />
+                    <li>@Html.DisplayFor(model => model.departamento.DIR_DEP)</li>
+                    <hr />
+                    <li>@Html.DisplayFor(model => model.departamento.DES_DEP)</li>
+                    <hr />
+                    <li>@Html.DisplayFor(model => model.departamento.SERV_DEP)</li>
+                </ul>
+            </div>
+        </div>
 </div>
 
+<div id="columna2">
 
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a href="#home" class="nav-link active" data-toggle="tab">Enviar Mensaje</a>
+        </li>
+        <li class="nav-item">
+            <a href="#profile" class="nav-link" data-toggle="tab">Ver teléfono</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade show active">
+            <div id="contacto" style="display:none">
+                @using (Html.BeginForm("Contacto", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Contactar al Anunciante</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    
+
+                        <div class="form-group">
+                            @*@Html.HiddenFor(model => model.contacto.COD_DEMA, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.HiddenFor(model => model.contacto.COD_DEMA, new {  @Value = User.Identity.GetUserId() })
+                                @Html.ValidationMessageFor(model => model.contacto.COD_DEMA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.HiddenFor(model => model.contacto.COD_OFER, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.HiddenFor(model => model.contacto.COD_OFER, new {  @Value = Model.departamento.ID })
+                                @Html.ValidationMessageFor(model => model.contacto.COD_OFER, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                           @* @Html.HiddenFor( model => model.contacto.NOM_CON, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.contacto.NOM_CON, new { htmlAttributes = new { @class = "form-control texfor", placeholder = "Nombre", @Value = User.Identity.GetUserName()} })
+                                @Html.ValidationMessageFor(model => model.contacto.NOM_CON, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.HiddenFor(model => model.contacto.EMAIL_CON, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.contacto.EMAIL_CON, new { htmlAttributes = new { @class = "form-control texfor", placeholder = "Email" } })
+                                @Html.ValidationMessageFor(model => model.contacto.EMAIL_CON, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.HiddenFor(model => model.contacto.TEL_CON, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.contacto.TEL_CON, new { htmlAttributes = new { @class = "form-control texfor", placeholder = "Teléfono" } })
+                                @Html.ValidationMessageFor(model => model.contacto.TEL_CON, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.HiddenFor(model => model.contacto.TEXT_CON, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.contacto.TEXT_CON, new { htmlAttributes = new { @class = "whatever-class", @cols = 80, @rows = 20 } })
+                                <i class="fas fa-pencil-alt prefix"></i>
+                                @Html.ValidationMessageFor(model => model.contacto.TEXT_CON, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.HiddenFor(model => model.contacto.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.HiddenFor(model => model.contacto.ESTADO, new { @Value = "I" })
+                                @Html.ValidationMessageFor(model => model.contacto.ESTADO, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.HiddenFor(model => model.contacto.COD_DEP, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.HiddenFor(model => model.contacto.COD_DEP, new { @Value = Model.departamento.COD_DEP })
+                                @Html.ValidationMessageFor(model => model.contacto.COD_DEP, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Enviar" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <button id="mostrar" class="btn btn-primary">Contactar</button>
+        </div>
+
+        
+
+        <div id="profile" class="tab-pane fade" style="padding-left:30px;">
+            <p>@Model.departamento.AspNetUsers.Nombres</p>
+            <hr />
+            <p>@Model.departamento.AspNetUsers.Email</p>
+            <hr />
+            <p>@Model.departamento.AspNetUsers.PhoneNumber</p>
+            <hr />
+            <a href="https://api.whatsapp.com/send?phone=@Model.departamento.AspNetUsers.PhoneNumber&text=Hola,%20me%20interesa%20el%20departamento." target="_blank" style="text-decoration:none; color:olivedrab;">
+                <img style="width:50px; height:50px;" src="~/Content/img/Whatsapp-Icon.png" /> Contactar por WhatsApp
+            </a>
+        </div>
+       
+
+    </div>
+    
+</div>
+
+    <br /><br /><br /> <br /><br /><br /><br /><br /><br /> <br /><br /><br /><br /><br /><br /> <br /><br /><br /><br /><br /><br /> <br /><br /><br /><br /><br /><br /> <br /><br /><br />
+    <br /><br /><br /> <br /><br /><br /><br /><br /><br />

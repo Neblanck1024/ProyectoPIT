@@ -1,0 +1,142 @@
+﻿@model MvcAuth.Datos.PagoViewModel
+@using Microsoft.AspNet.Identity;
+
+<br /><br /><br /><br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container" style="margin-top:35px">
+
+        <div class="col-12">
+
+            <div class="col-12 row">
+                <div class="col-6">
+
+                    <div class="DatosPersonales">
+
+                        <h4 class="mb-3">Datos Personales</h4>
+
+                        <div class="col-12 form-group">
+                            @Html.HiddenFor(model => model.usuario.Id, new { @Value = Model.usuario.Id })
+                        </div>
+
+
+                        <div class="col-12 form-group">
+                            <h6>Nombres y Apellidos</h6>
+                            @Html.EditorFor(model => model.usuario.nombreCompleto, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <h6>Telefono</h6>
+                            @Html.EditorFor(model => model.usuario.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <h6>Correo Electronico</h6>
+                            @Html.EditorFor(model => model.usuario.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-6 d-flex justify-content-center align-items-center">
+
+                    <div class="col-10 d-flex justify-content-center align-content-center" style="margin-top:-80px">
+                        <div class="col-12 bg-success d-flex align-items-center" style="height:150px">
+                            <img src="~/Imagenes/Tickets_Back.jpg" style="position:absolute;top:0;left:0; width:100%; height:100%" alt="Alternate Text">
+
+                            <div class="col-12  Importe d-flex justify-content-center align-items-center">
+                                <div class="form-group  d-flex align-items-center mt-3">
+                                    @Html.HiddenFor(model => model.membresia.ID_MEMBRESIA, new { @Value = Model.membresia.ID_MEMBRESIA })
+                                    <p style="font-size:40px;font-weight:bold">S/         @Model.membresia.PRE_MEN</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+
+            <div class=" col-12 row">
+
+                <div class="col-6 pt-4 ">
+                    <div class="MetodoPago form-group">
+                        <div class="col-12">
+                            <h4>Metodos de Pago</h4>
+                        </div>
+                        <input class="form-control" type="hidden" id="tipo" name="" value="VISA">
+                        <i class="far fa-calendar-alt"></i>
+
+                        <div class="col-12">
+                            <img src="/Imagenes/visa.png" width="80px" alt="Alternate Text">
+                            VISA
+                            <input id="visa" type="checkbox" name="Visa" value="">
+
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <img src="/Imagenes/MasterCard.png" width="80px" alt="Alternate Text">
+                            MASTERCARD
+                            <input disabled="" id="mastercard" type="checkbox" name="MasterCard" value="">
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 d-flex align-items-end" style="position:absolute;bottom:0;left:0;">
+
+                        <button type="submit" class="btn btn-info col-12">Confirmar Pago</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-6 pt-4 pb-4" style="background:rgba(0,0,0,0.1); margin-top:-100px;border-radius:5px">
+
+                    <div class="titulo col-12 pb-4">
+                        <h4 style="text-align:center">Informacion de la Tarjeta</h4>
+                    </div>
+                    <div class="DatosPersonales">
+
+                        <div class="col-12 form-group">
+                            <h6>N° Tajeta:</h6>
+                            <div class="row col-12">
+                                <img src="/Imagenes/credit-cards-payment.png" width="40px" alt="Alternate Text">
+                                @Html.EditorFor(model => model.tarjeta.NUM_TARJETA, new { htmlAttributes = new { @class = "form-control ml-2" } })
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <h6>Caducidad:</h6>
+                            <div class="row col-12">
+                                <img src="/Imagenes/calendar.png" width="40px" alt="Alternate Text">
+                                @Html.EditorFor(model => model.tarjeta.MES_TARJETA, new { htmlAttributes = new { @class = "form-control col-1 pl-1 pr-0 ml-2 mr-1 mt-1" } })
+                                @Html.EditorFor(model => model.tarjeta.ANIO_TARJETA, new { htmlAttributes = new { @class = "form-control col-2 mt-1" } })
+                            </div>
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <h6>Cod. Seguridad:</h6>
+                            <div class="col-12 row">
+                                <img src="/Imagenes/locked-padlock.png" width="40px" alt="Alternate Text">
+                                @Html.EditorFor(model => model.tarjeta.COD_TARJETA, new { htmlAttributes = new { @class = "form-control ml-2 mt-1 pl-1 col-2" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}

@@ -35,7 +35,7 @@ namespace MvcAuth.Controllers
                 Departamento objD = new Departamento
                 {
                     codigo = int.Parse(dr[0].ToString()),
-                    nombre = dr[1].ToString()
+                    titulo = dr[1].ToString()
                 };
                 tDep.Add(objD);
             }
@@ -92,52 +92,121 @@ namespace MvcAuth.Controllers
         {
             ViewBag.tipo = new SelectList(listadoTipos(), "codigo", "nombre");
             ViewBag.distrito = new SelectList(listadoDistritos(), "codigo", "nombre");
-            return View(new Departamento());
+            return View(new DepaMemViewModel().departamento);
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
         //[Authorize(Users = "Usuario1, Usuario2")]
-        public ActionResult Crear(Departamento objD)
+        public ActionResult Crear(DepaMemViewModel objD)
         {
             var userId = User.Identity.GetUserId();
             HttpPostedFileBase FileBase = Request.Files[0];
 
             WebImage image = new WebImage(FileBase.InputStream);
 
-            objD.foto = image.GetBytes();
-            objD.idUsuario = userId;
+            var cant = storeDB.TB_DEPARTAMENTO.Where(r => r.ID == userId).Count();
 
-            if (!ModelState.IsValid)
-            {
-                return View(objD);
+            var usuario = storeDB.CLIENTEMEMBRESIA.Where(r => r.ID_USU == userId).FirstOrDefault();
+
+            DateTime fecha1 = Convert.ToDateTime(usuario.FECHA);
+            DateTime fecha2 = DateTime.Today;
+
+            int dias = ((TimeSpan)(fecha2 - fecha1)).Days;
+
+            if (cant <= 1) { 
+                objD.departamento.foto = image.GetBytes();
+                objD.departamento.idUsuario = userId;
+
+                //if (!ModelState.IsValid)
+                //{
+                //    return View(objD);
+                //}
+
+
+                ViewBag.mensaje = "";
+                cn.Open();
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("sp_InsertaDep", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NOM_DEP", objD.departamento.titulo);
+                    cmd.Parameters.AddWithValue("@TIP_DEP", objD.departamento.tipo);
+                    cmd.Parameters.AddWithValue("@NRO_PISO", objD.departamento.numpiso);
+                    cmd.Parameters.AddWithValue("@NUM_HABI", objD.departamento.numhabi);
+                    cmd.Parameters.AddWithValue("@PRECIO", objD.departamento.precio);
+                    cmd.Parameters.AddWithValue("@FOTO", objD.departamento.foto);
+                    cmd.Parameters.AddWithValue("@DISTRITO", objD.departamento.idDistrito);
+                    cmd.Parameters.AddWithValue("@ID", objD.departamento.idUsuario);
+                    cmd.Parameters.AddWithValue("@DIR", objD.departamento.direccion);
+                    cmd.Parameters.AddWithValue("@DES", objD.departamento.descripcion);
+                    cmd.Parameters.AddWithValue("@SERVICIO", objD.departamento.servicios);
+                    int x = cmd.ExecuteNonQuery();
+                    ViewBag.mensaje = x.ToString() + " Proveedor registrado correctamente..!!";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.mensaje = ex.Message;
+
+                }
+                cn.Close();
+                return RedirectToAction("Index", "Home");
+
             }
 
+            
 
-            ViewBag.mensaje = "";
-            cn.Open();
-            try
-            {
-                SqlCommand cmd = new SqlCommand("sp_InsertaDep", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@NOM_DEP", objD.nombre);
-                cmd.Parameters.AddWithValue("@TIP_DEP", objD.tipo);
-                cmd.Parameters.AddWithValue("@NRO_PISO", objD.numpiso);
-                cmd.Parameters.AddWithValue("@NUM_HABI", objD.numhabi);
-                cmd.Parameters.AddWithValue("@PRECIO", objD.precio);
-                cmd.Parameters.AddWithValue("@FOTO", objD.foto);
-                cmd.Parameters.AddWithValue("@DISTRITO", objD.idDistrito);
-                cmd.Parameters.AddWithValue("@ID", objD.idUsuario);
-                int x = cmd.ExecuteNonQuery();
-                ViewBag.mensaje = x.ToString() + " Proveedor registrado correctamente..!!";
-            }
-            catch (Exception ex)
-            {
-                ViewBag.mensaje = ex.Message;
+           
 
+             else if (usuario.ID_USU != null && usuario.MEMBRESIA.DIAS_MEM>=dias)
+            {
+                objD.departamento.foto = image.GetBytes();
+                objD.departamento.idUsuario = userId;
+
+                if (!ModelState.IsValid)
+                {
+                    return View(objD);
+                }
+
+
+                ViewBag.mensaje = "";
+                cn.Open();
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("sp_InsertaDep", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NOM_DEP", objD.departamento.titulo);
+                    cmd.Parameters.AddWithValue("@TIP_DEP", objD.departamento.tipo);
+                    cmd.Parameters.AddWithValue("@NRO_PISO", objD.departamento.numpiso);
+                    cmd.Parameters.AddWithValue("@NUM_HABI", objD.departamento.numhabi);
+                    cmd.Parameters.AddWithValue("@PRECIO", objD.departamento.precio);
+                    cmd.Parameters.AddWithValue("@FOTO", objD.departamento.foto);
+                    cmd.Parameters.AddWithValue("@DISTRITO", objD.departamento.idDistrito);
+                    cmd.Parameters.AddWithValue("@ID", objD.departamento.idUsuario);
+                    cmd.Parameters.AddWithValue("@DIR", objD.departamento.direccion);
+                    cmd.Parameters.AddWithValue("@DES", objD.departamento.descripcion);
+                    cmd.Parameters.AddWithValue("@SERVICIO", objD.departamento.servicios);
+                    int x = cmd.ExecuteNonQuery();
+                    ViewBag.mensaje = x.ToString() + " Proveedor registrado correctamente..!!";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.mensaje = ex.Message;
+
+                }
+                cn.Close();
+                return RedirectToAction("Index", "Home");
+             }
+            else
+            {
+                return RedirectToAction("Aviso", "Departamento");
             }
-            cn.Close();
-            return RedirectToAction("Index", "Home");
+
+        }
+
+        public ActionResult Aviso()
+        {
+            return View();
         }
 
     }

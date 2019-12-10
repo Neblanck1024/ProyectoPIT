@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MvcAuth.Models.MEMBRESIA>
+<br /><br /><br /><br />
+<br /><br />
+<table class="table">
+    <tr>
+        <th style="display:none;">
+            @Html.DisplayNameFor(model => model.ID_MEMBRESIA)
+        </th>
+        <th>
+            @Html.DisplayName("TITULO")
+        </th>
+        <th>
+            @Html.DisplayName("CARACTERISTICAS")
+        </th>
+        <th>
+            @Html.DisplayName("PRECIO")
+        </th>
+        <th style="display:none;">
+            @Html.DisplayNameFor(model => model.DIAS_MEM)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td style="display:none;">
+            @Html.DisplayFor(modelItem => item.ID_MEMBRESIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DES_MEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAR_MEM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRE_MEN)
+        </td>
+        <td style="display:none;">
+            @Html.DisplayFor(modelItem => item.DIAS_MEM)
+        </td>
+        <td>
+            @Html.ActionLink("Comprar", "Pago", new { id = item.ID_MEMBRESIA }) 
+        </td>
+    </tr>
+    }
+
+</table>

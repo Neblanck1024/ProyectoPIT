@@ -1,0 +1,1072 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BD_PITModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar(max)" />
+          <Property Name="Apellidos" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" />
+          <Property Name="Genero" Type="varchar" MaxLength="10" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Dni" Type="int" />
+          <Property Name="EstadoCivil" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="CLIENTEMEMBRESIA">
+          <Key>
+            <PropertyRef Name="ID_CLIENTEMEMBRESIA" />
+          </Key>
+          <Property Name="ID_CLIENTEMEMBRESIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_MEMBRESIA" Type="int" Nullable="false" />
+          <Property Name="ID_USU" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="FEC_FIN" Type="date" />
+        </EntityType>
+        <EntityType Name="MEMBRESIA">
+          <Key>
+            <PropertyRef Name="ID_MEMBRESIA" />
+          </Key>
+          <Property Name="ID_MEMBRESIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DES_MEN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRE_MEN" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CAR_MEM" Type="varchar" MaxLength="500" />
+          <Property Name="DIAS_MEM" Type="int" />
+        </EntityType>
+        <EntityType Name="TARJETA">
+          <Key>
+            <PropertyRef Name="ID_TARJETA" />
+          </Key>
+          <Property Name="ID_TARJETA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIPO_TARJETA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NUM_TARJETA" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ANIO_TARJETA" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="MES_TARJETA" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="COD_TARJETA" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="MONTO_TARJETA" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_CONTACTO">
+          <Key>
+            <PropertyRef Name="COD_CON" />
+          </Key>
+          <Property Name="COD_CON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_DEMA" Type="nvarchar" MaxLength="128" />
+          <Property Name="COD_OFER" Type="nvarchar" MaxLength="128" />
+          <Property Name="NOM_CON" Type="varchar" MaxLength="80" />
+          <Property Name="EMAIL_CON" Type="nvarchar" MaxLength="800" />
+          <Property Name="TEL_CON" Type="char" MaxLength="11" />
+          <Property Name="TEXT_CON" Type="nvarchar(max)" />
+          <Property Name="ESTADO" Type="char" MaxLength="1" />
+          <Property Name="COD_DEP" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="COD_DEP" />
+          </Key>
+          <Property Name="COD_DEP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_DEP" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="TIP_DEP" Type="int" Nullable="false" />
+          <Property Name="NRO_PISO" Type="int" Nullable="false" />
+          <Property Name="NUM_HABITACIONES" Type="int" Nullable="false" />
+          <Property Name="PRECIO" Type="money" Nullable="false" />
+          <Property Name="FOTO" Type="varbinary(max)" />
+          <Property Name="DISTRITO" Type="int" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DIR_DEP" Type="varchar" MaxLength="100" />
+          <Property Name="DES_DEP" Type="nvarchar(max)" />
+          <Property Name="SERV_DEP" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TB_DISTRITO">
+          <Key>
+            <PropertyRef Name="COD_DIS" />
+          </Key>
+          <Property Name="COD_DIS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_DIS" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_TIPODEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="COD_TIPDEP" />
+          </Key>
+          <Property Name="COD_TIPDEP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_TIPDEP" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="nombres" Type="nvarchar(max)" />
+          <Property Name="apellidos" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" />
+          <Property Name="username" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__CLIENTEME__ID_ME__74AE54BC">
+          <End Role="MEMBRESIA" Type="Self.MEMBRESIA" Multiplicity="1" />
+          <End Role="CLIENTEMEMBRESIA" Type="Self.CLIENTEMEMBRESIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBRESIA">
+              <PropertyRef Name="ID_MEMBRESIA" />
+            </Principal>
+            <Dependent Role="CLIENTEMEMBRESIA">
+              <PropertyRef Name="ID_MEMBRESIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTEME__ID_US__75A278F5">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="CLIENTEMEMBRESIA" Type="Self.CLIENTEMEMBRESIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CLIENTEMEMBRESIA">
+              <PropertyRef Name="ID_USU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TARJETA__ID_USUA__787EE5A0">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="TARJETA" Type="Self.TARJETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TARJETA">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_CONTAC__COD_D__5BE2A6F2">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TB_CONTACTO">
+              <PropertyRef Name="COD_DEMA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_CONTAC__COD_D__5EBF139D">
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="0..1" />
+          <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="COD_DEP" />
+            </Principal>
+            <Dependent Role="TB_CONTACTO">
+              <PropertyRef Name="COD_DEP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_CONTAC__COD_O__5CD6CB2B">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TB_CONTACTO">
+              <PropertyRef Name="COD_OFER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPART__DISTR__5165187F">
+          <End Role="TB_DISTRITO" Type="Self.TB_DISTRITO" Multiplicity="1" />
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DISTRITO">
+              <PropertyRef Name="COD_DIS" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="DISTRITO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPART__TIP_D__52593CB8">
+          <End Role="TB_TIPODEPARTAMENTO" Type="Self.TB_TIPODEPARTAMENTO" Multiplicity="1" />
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPODEPARTAMENTO">
+              <PropertyRef Name="COD_TIPDEP" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="TIP_DEP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPARTAME__ID__534D60F1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="NUMERO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="DATE" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertaDep" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOM_DEP" Type="varchar" Mode="In" />
+          <Parameter Name="TIP_DEP" Type="int" Mode="In" />
+          <Parameter Name="NRO_PISO" Type="int" Mode="In" />
+          <Parameter Name="NUM_HABI" Type="int" Mode="In" />
+          <Parameter Name="PRECIO" Type="money" Mode="In" />
+          <Parameter Name="FOTO" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="DISTRITO" Type="int" Mode="In" />
+          <Parameter Name="ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="DIR" Type="varchar" Mode="In" />
+          <Parameter Name="DES" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="SERVICIO" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_LISTADODEPA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTADODISTRITOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTADOTIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTARUSUARIOXCOD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="BD_PITModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTEMEMBRESIA" EntityType="Self.CLIENTEMEMBRESIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEMBRESIA" EntityType="Self.MEMBRESIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TARJETA" EntityType="Self.TARJETA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_CONTACTO" EntityType="Self.TB_CONTACTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_DEPARTAMENTO" EntityType="Self.TB_DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_DISTRITO" EntityType="Self.TB_DISTRITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TIPODEPARTAMENTO" EntityType="Self.TB_TIPODEPARTAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CLIENTEME__ID_ME__74AE54BC" Association="Self.FK__CLIENTEME__ID_ME__74AE54BC">
+            <End Role="MEMBRESIA" EntitySet="MEMBRESIA" />
+            <End Role="CLIENTEMEMBRESIA" EntitySet="CLIENTEMEMBRESIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTEME__ID_US__75A278F5" Association="Self.FK__CLIENTEME__ID_US__75A278F5">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="CLIENTEMEMBRESIA" EntitySet="CLIENTEMEMBRESIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TARJETA__ID_USUA__787EE5A0" Association="Self.FK__TARJETA__ID_USUA__787EE5A0">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TARJETA" EntitySet="TARJETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_CONTAC__COD_D__5BE2A6F2" Association="Self.FK__TB_CONTAC__COD_D__5BE2A6F2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_CONTAC__COD_D__5EBF139D" Association="Self.FK__TB_CONTAC__COD_D__5EBF139D">
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+            <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_CONTAC__COD_O__5CD6CB2B" Association="Self.FK__TB_CONTAC__COD_O__5CD6CB2B">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPART__DISTR__5165187F" Association="Self.FK__TB_DEPART__DISTR__5165187F">
+            <End Role="TB_DISTRITO" EntitySet="TB_DISTRITO" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPART__TIP_D__52593CB8" Association="Self.FK__TB_DEPART__TIP_D__52593CB8">
+            <End Role="TB_TIPODEPARTAMENTO" EntitySet="TB_TIPODEPARTAMENTO" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPARTAME__ID__534D60F1" Association="Self.FK__TB_DEPARTAME__ID__534D60F1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_PITModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Apellidos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Genero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Dni" Type="Int32" />
+          <Property Name="EstadoCivil" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="TARJETA" Relationship="Self.FK__TARJETA__ID_USUA__787EE5A0" FromRole="AspNetUsers" ToRole="TARJETA" />
+          <NavigationProperty Name="TB_CONTACTO" Relationship="Self.FK__TB_CONTAC__COD_D__5BE2A6F2" FromRole="AspNetUsers" ToRole="TB_CONTACTO" />
+          <NavigationProperty Name="TB_CONTACTO1" Relationship="Self.FK__TB_CONTAC__COD_O__5CD6CB2B" FromRole="AspNetUsers" ToRole="TB_CONTACTO" />
+          <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="Self.FK__TB_DEPARTAME__ID__534D60F1" FromRole="AspNetUsers" ToRole="TB_DEPARTAMENTO" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="CLIENTEMEMBRESIA" Relationship="BD_PITModel.FK__CLIENTEME__ID_US__75A278F5" FromRole="AspNetUsers" ToRole="CLIENTEMEMBRESIA" />
+        </EntityType>
+        <EntityType Name="TARJETA">
+          <Key>
+            <PropertyRef Name="ID_TARJETA" />
+          </Key>
+          <Property Name="ID_TARJETA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIPO_TARJETA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUM_TARJETA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ANIO_TARJETA" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MES_TARJETA" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COD_TARJETA" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MONTO_TARJETA" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__TARJETA__ID_USUA__787EE5A0" FromRole="TARJETA" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="TB_CONTACTO">
+          <Key>
+            <PropertyRef Name="COD_CON" />
+          </Key>
+          <Property Name="COD_CON" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COD_DEMA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="COD_OFER" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NOM_CON" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_CON" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="TEL_CON" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="TEXT_CON" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="COD_DEP" Type="Int32" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__TB_CONTAC__COD_D__5BE2A6F2" FromRole="TB_CONTACTO" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="Self.FK__TB_CONTAC__COD_O__5CD6CB2B" FromRole="TB_CONTACTO" ToRole="AspNetUsers" />
+          <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="Self.FK__TB_CONTAC__COD_D__5EBF139D" FromRole="TB_CONTACTO" ToRole="TB_DEPARTAMENTO" />
+        </EntityType>
+        <EntityType Name="TB_DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="COD_DEP" />
+          </Key>
+          <Property Name="COD_DEP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_DEP" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIP_DEP" Type="Int32" Nullable="false" />
+          <Property Name="NRO_PISO" Type="Int32" Nullable="false" />
+          <Property Name="NUM_HABITACIONES" Type="Int32" Nullable="false" />
+          <Property Name="PRECIO" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DISTRITO" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DIR_DEP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DES_DEP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SERV_DEP" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__TB_DEPARTAME__ID__534D60F1" FromRole="TB_DEPARTAMENTO" ToRole="AspNetUsers" />
+          <NavigationProperty Name="TB_CONTACTO" Relationship="Self.FK__TB_CONTAC__COD_D__5EBF139D" FromRole="TB_DEPARTAMENTO" ToRole="TB_CONTACTO" />
+          <NavigationProperty Name="TB_DISTRITO" Relationship="Self.FK__TB_DEPART__DISTR__5165187F" FromRole="TB_DEPARTAMENTO" ToRole="TB_DISTRITO" />
+          <NavigationProperty Name="TB_TIPODEPARTAMENTO" Relationship="Self.FK__TB_DEPART__TIP_D__52593CB8" FromRole="TB_DEPARTAMENTO" ToRole="TB_TIPODEPARTAMENTO" />
+        </EntityType>
+        <EntityType Name="TB_DISTRITO">
+          <Key>
+            <PropertyRef Name="COD_DIS" />
+          </Key>
+          <Property Name="COD_DIS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_DIS" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="Self.FK__TB_DEPART__DISTR__5165187F" FromRole="TB_DISTRITO" ToRole="TB_DEPARTAMENTO" />
+        </EntityType>
+        <EntityType Name="TB_TIPODEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="COD_TIPDEP" />
+          </Key>
+          <Property Name="COD_TIPDEP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_TIPDEP" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="Self.FK__TB_DEPART__TIP_D__52593CB8" FromRole="TB_TIPODEPARTAMENTO" ToRole="TB_DEPARTAMENTO" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="apellidos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TARJETA__ID_USUA__787EE5A0">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="TARJETA" Type="Self.TARJETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TARJETA">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_CONTAC__COD_D__5BE2A6F2">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TB_CONTACTO">
+              <PropertyRef Name="COD_DEMA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_CONTAC__COD_O__5CD6CB2B">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TB_CONTACTO">
+              <PropertyRef Name="COD_OFER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPARTAME__ID__534D60F1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_CONTAC__COD_D__5EBF139D">
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="0..1" />
+          <End Role="TB_CONTACTO" Type="Self.TB_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="COD_DEP" />
+            </Principal>
+            <Dependent Role="TB_CONTACTO">
+              <PropertyRef Name="COD_DEP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPART__DISTR__5165187F">
+          <End Role="TB_DISTRITO" Type="Self.TB_DISTRITO" Multiplicity="1" />
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DISTRITO">
+              <PropertyRef Name="COD_DIS" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="DISTRITO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DEPART__TIP_D__52593CB8">
+          <End Role="TB_TIPODEPARTAMENTO" Type="Self.TB_TIPODEPARTAMENTO" Multiplicity="1" />
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPODEPARTAMENTO">
+              <PropertyRef Name="COD_TIPDEP" />
+            </Principal>
+            <Dependent Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="TIP_DEP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BD_PITEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="TARJETA" EntityType="Self.TARJETA" />
+          <EntitySet Name="TB_CONTACTO" EntityType="Self.TB_CONTACTO" />
+          <EntitySet Name="TB_DEPARTAMENTO" EntityType="Self.TB_DEPARTAMENTO" />
+          <EntitySet Name="TB_DISTRITO" EntityType="Self.TB_DISTRITO" />
+          <EntitySet Name="TB_TIPODEPARTAMENTO" EntityType="Self.TB_TIPODEPARTAMENTO" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TARJETA__ID_USUA__787EE5A0" Association="Self.FK__TARJETA__ID_USUA__787EE5A0">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TARJETA" EntitySet="TARJETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_CONTAC__COD_D__5BE2A6F2" Association="Self.FK__TB_CONTAC__COD_D__5BE2A6F2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_CONTAC__COD_O__5CD6CB2B" Association="Self.FK__TB_CONTAC__COD_O__5CD6CB2B">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPARTAME__ID__534D60F1" Association="Self.FK__TB_DEPARTAME__ID__534D60F1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_CONTAC__COD_D__5EBF139D" Association="Self.FK__TB_CONTAC__COD_D__5EBF139D">
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+            <End Role="TB_CONTACTO" EntitySet="TB_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPART__DISTR__5165187F" Association="Self.FK__TB_DEPART__DISTR__5165187F">
+            <End Role="TB_DISTRITO" EntitySet="TB_DISTRITO" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DEPART__TIP_D__52593CB8" Association="Self.FK__TB_DEPART__TIP_D__52593CB8">
+            <End Role="TB_TIPODEPARTAMENTO" EntitySet="TB_TIPODEPARTAMENTO" />
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <FunctionImport Name="sp_InsertaDep">
+            <Parameter Name="NOM_DEP" Mode="In" Type="String" />
+            <Parameter Name="TIP_DEP" Mode="In" Type="Int32" />
+            <Parameter Name="NRO_PISO" Mode="In" Type="Int32" />
+            <Parameter Name="NUM_HABI" Mode="In" Type="Int32" />
+            <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="FOTO" Mode="In" Type="Binary" />
+            <Parameter Name="DISTRITO" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="String" />
+            <Parameter Name="DIR" Mode="In" Type="String" />
+            <Parameter Name="DES" Mode="In" Type="String" />
+            <Parameter Name="SERVICIO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LISTADODEPA" ReturnType="Collection(BD_PITModel.SP_LISTADODEPA_Result)" />
+          <FunctionImport Name="SP_LISTADODISTRITOS" ReturnType="Collection(BD_PITModel.SP_LISTADODISTRITOS_Result)" />
+          <FunctionImport Name="SP_LISTADOTIPO" ReturnType="Collection(BD_PITModel.SP_LISTADOTIPO_Result)" />
+          <FunctionImport Name="SP_LISTARUSUARIOXCOD" ReturnType="Collection(BD_PITModel.SP_LISTARUSUARIOXCOD_Result)">
+          <Parameter Name="COD" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="MEMBRESIA" EntityType="BD_PITModel.MEMBRESIA" />
+          <EntitySet Name="CLIENTEMEMBRESIA" EntityType="BD_PITModel.CLIENTEMEMBRESIA" />
+          <AssociationSet Name="FK__CLIENTEME__ID_US__75A278F5" Association="BD_PITModel.FK__CLIENTEME__ID_US__75A278F5">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="CLIENTEMEMBRESIA" EntitySet="CLIENTEMEMBRESIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTEME__ID_ME__74AE54BC" Association="BD_PITModel.FK__CLIENTEME__ID_ME__74AE54BC">
+            <End Role="MEMBRESIA" EntitySet="MEMBRESIA" />
+            <End Role="CLIENTEMEMBRESIA" EntitySet="CLIENTEMEMBRESIA" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="SP_LISTADODEPA_Result">
+          <Property Type="String" Name="NOM_DEP" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="NRO_PISO" Nullable="false" />
+          <Property Type="Int32" Name="NUM_HABITACIONES" Nullable="false" />
+          <Property Type="Decimal" Name="PRECIO" Nullable="false" Precision="19" />
+          <Property Type="Binary" Name="FOTO" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTADODISTRITOS_Result">
+          <Property Type="Int32" Name="COD_DIS" Nullable="false" />
+          <Property Type="String" Name="NOM_DIS" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTADOTIPO_Result">
+          <Property Type="Int32" Name="COD_TIPDEP" Nullable="false" />
+          <Property Type="String" Name="NOM_TIPDEP" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTARUSUARIOXCOD_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Nombres" Nullable="true" />
+          <Property Type="String" Name="Apellidos" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
+        </ComplexType>
+        <EntityType Name="MEMBRESIA">
+          <Key>
+            <PropertyRef Name="ID_MEMBRESIA" />
+          </Key>
+          <Property Name="ID_MEMBRESIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DES_MEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRE_MEN" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="CAR_MEM" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DIAS_MEM" Type="Int32" />
+          <NavigationProperty Name="CLIENTEMEMBRESIA" Relationship="BD_PITModel.FK__CLIENTEME__ID_ME__74AE54BC" FromRole="MEMBRESIA" ToRole="CLIENTEMEMBRESIA" />
+        </EntityType>
+        <EntityType Name="CLIENTEMEMBRESIA">
+          <Key>
+            <PropertyRef Name="ID_CLIENTEMEMBRESIA" />
+          </Key>
+          <Property Name="ID_CLIENTEMEMBRESIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_MEMBRESIA" Type="Int32" Nullable="false" />
+          <Property Name="ID_USU" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FEC_FIN" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BD_PITModel.FK__CLIENTEME__ID_US__75A278F5" FromRole="CLIENTEMEMBRESIA" ToRole="AspNetUsers" />
+          <NavigationProperty Name="MEMBRESIA" Relationship="BD_PITModel.FK__CLIENTEME__ID_ME__74AE54BC" FromRole="CLIENTEMEMBRESIA" ToRole="MEMBRESIA" />
+        </EntityType>
+        <Association Name="FK__CLIENTEME__ID_US__75A278F5">
+          <End Type="BD_PITModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="BD_PITModel.CLIENTEMEMBRESIA" Role="CLIENTEMEMBRESIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CLIENTEMEMBRESIA">
+              <PropertyRef Name="ID_USU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTEME__ID_ME__74AE54BC">
+          <End Type="BD_PITModel.MEMBRESIA" Role="MEMBRESIA" Multiplicity="1" />
+          <End Type="BD_PITModel.CLIENTEMEMBRESIA" Role="CLIENTEMEMBRESIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBRESIA">
+              <PropertyRef Name="ID_MEMBRESIA" />
+            </Principal>
+            <Dependent Role="CLIENTEMEMBRESIA">
+              <PropertyRef Name="ID_MEMBRESIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_PITModelStoreContainer" CdmEntityContainer="BD_PITEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="BD_PITModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="BD_PITModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="BD_PITModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="BD_PITModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="BD_PITModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+                <ScalarProperty Name="EstadoCivil" ColumnName="EstadoCivil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TARJETA">
+            <EntityTypeMapping TypeName="BD_PITModel.TARJETA">
+              <MappingFragment StoreEntitySet="TARJETA">
+                <ScalarProperty Name="ID_TARJETA" ColumnName="ID_TARJETA" />
+                <ScalarProperty Name="TIPO_TARJETA" ColumnName="TIPO_TARJETA" />
+                <ScalarProperty Name="NUM_TARJETA" ColumnName="NUM_TARJETA" />
+                <ScalarProperty Name="ANIO_TARJETA" ColumnName="ANIO_TARJETA" />
+                <ScalarProperty Name="MES_TARJETA" ColumnName="MES_TARJETA" />
+                <ScalarProperty Name="COD_TARJETA" ColumnName="COD_TARJETA" />
+                <ScalarProperty Name="MONTO_TARJETA" ColumnName="MONTO_TARJETA" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_CONTACTO">
+            <EntityTypeMapping TypeName="BD_PITModel.TB_CONTACTO">
+              <MappingFragment StoreEntitySet="TB_CONTACTO">
+                <ScalarProperty Name="COD_CON" ColumnName="COD_CON" />
+                <ScalarProperty Name="COD_DEMA" ColumnName="COD_DEMA" />
+                <ScalarProperty Name="COD_OFER" ColumnName="COD_OFER" />
+                <ScalarProperty Name="NOM_CON" ColumnName="NOM_CON" />
+                <ScalarProperty Name="EMAIL_CON" ColumnName="EMAIL_CON" />
+                <ScalarProperty Name="TEL_CON" ColumnName="TEL_CON" />
+                <ScalarProperty Name="TEXT_CON" ColumnName="TEXT_CON" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="COD_DEP" ColumnName="COD_DEP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_DEPARTAMENTO">
+            <EntityTypeMapping TypeName="BD_PITModel.TB_DEPARTAMENTO">
+              <MappingFragment StoreEntitySet="TB_DEPARTAMENTO">
+                <ScalarProperty Name="COD_DEP" ColumnName="COD_DEP" />
+                <ScalarProperty Name="NOM_DEP" ColumnName="NOM_DEP" />
+                <ScalarProperty Name="TIP_DEP" ColumnName="TIP_DEP" />
+                <ScalarProperty Name="NRO_PISO" ColumnName="NRO_PISO" />
+                <ScalarProperty Name="NUM_HABITACIONES" ColumnName="NUM_HABITACIONES" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DIR_DEP" ColumnName="DIR_DEP" />
+                <ScalarProperty Name="DES_DEP" ColumnName="DES_DEP" />
+                <ScalarProperty Name="SERV_DEP" ColumnName="SERV_DEP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_DISTRITO">
+            <EntityTypeMapping TypeName="BD_PITModel.TB_DISTRITO">
+              <MappingFragment StoreEntitySet="TB_DISTRITO">
+                <ScalarProperty Name="COD_DIS" ColumnName="COD_DIS" />
+                <ScalarProperty Name="NOM_DIS" ColumnName="NOM_DIS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TIPODEPARTAMENTO">
+            <EntityTypeMapping TypeName="BD_PITModel.TB_TIPODEPARTAMENTO">
+              <MappingFragment StoreEntitySet="TB_TIPODEPARTAMENTO">
+                <ScalarProperty Name="COD_TIPDEP" ColumnName="COD_TIPDEP" />
+                <ScalarProperty Name="NOM_TIPDEP" ColumnName="NOM_TIPDEP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="BD_PITModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="BD_PITModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_InsertaDep" FunctionName="BD_PITModel.Store.sp_InsertaDep" />
+          <FunctionImportMapping FunctionImportName="SP_LISTADODEPA" FunctionName="BD_PITModel.Store.SP_LISTADODEPA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTADODEPA_Result">
+                <ScalarProperty Name="NOM_DEP" ColumnName="NOM_DEP" />
+                <ScalarProperty Name="NRO_PISO" ColumnName="NRO_PISO" />
+                <ScalarProperty Name="NUM_HABITACIONES" ColumnName="NUM_HABITACIONES" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTADODISTRITOS" FunctionName="BD_PITModel.Store.SP_LISTADODISTRITOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTADODISTRITOS_Result">
+                <ScalarProperty Name="COD_DIS" ColumnName="COD_DIS" />
+                <ScalarProperty Name="NOM_DIS" ColumnName="NOM_DIS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTADOTIPO" FunctionName="BD_PITModel.Store.SP_LISTADOTIPO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTADOTIPO_Result">
+                <ScalarProperty Name="COD_TIPDEP" ColumnName="COD_TIPDEP" />
+                <ScalarProperty Name="NOM_TIPDEP" ColumnName="NOM_TIPDEP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTARUSUARIOXCOD" FunctionName="BD_PITModel.Store.SP_LISTARUSUARIOXCOD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_PITModel.SP_LISTARUSUARIOXCOD_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="MEMBRESIA">
+            <EntityTypeMapping TypeName="BD_PITModel.MEMBRESIA">
+              <MappingFragment StoreEntitySet="MEMBRESIA">
+                <ScalarProperty Name="DIAS_MEM" ColumnName="DIAS_MEM" />
+                <ScalarProperty Name="CAR_MEM" ColumnName="CAR_MEM" />
+                <ScalarProperty Name="PRE_MEN" ColumnName="PRE_MEN" />
+                <ScalarProperty Name="DES_MEN" ColumnName="DES_MEN" />
+                <ScalarProperty Name="ID_MEMBRESIA" ColumnName="ID_MEMBRESIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTEMEMBRESIA">
+            <EntityTypeMapping TypeName="BD_PITModel.CLIENTEMEMBRESIA">
+              <MappingFragment StoreEntitySet="CLIENTEMEMBRESIA">
+                <ScalarProperty Name="FEC_FIN" ColumnName="FEC_FIN" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="ID_USU" ColumnName="ID_USU" />
+                <ScalarProperty Name="ID_MEMBRESIA" ColumnName="ID_MEMBRESIA" />
+                <ScalarProperty Name="ID_CLIENTEMEMBRESIA" ColumnName="ID_CLIENTEMEMBRESIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

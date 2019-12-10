@@ -1,36 +1,27 @@
-﻿@model IEnumerable<MvcAuth.Datos.TB_DEPARTAMENTO>
+﻿@model IEnumerable<MvcAuth.Models.TB_DEPARTAMENTO>
 
 @{
     ViewBag.Title = "ListadoDepartamentos";
 }
 
-<h2>ListadoDepartamentos</h2>
+<br /><br /><br /><br /><br /><br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.COD_DEP)
+        <th style="display:none">
+            @Html.DisplayName("Titulo")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NOM_DEP)
+            @Html.DisplayName("Titulo")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TIP_DEP)
+            @Html.DisplayName("Tipo")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NRO_PISO)
+            @Html.DisplayName("Distrito")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NUM_HABITACIONES)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PRECIO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DISTRITO)
+            @Html.DisplayName("Precio")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FOTO)
@@ -40,7 +31,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td style="display:none">
             @Html.DisplayFor(modelItem => item.COD_DEP)
         </td>
         <td>
@@ -50,22 +41,16 @@
             @Html.DisplayFor(modelItem => item.TB_TIPODEPARTAMENTO.NOM_TIPDEP)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NRO_PISO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NUM_HABITACIONES)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRECIO)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.TB_DISTRITO.NOM_DIS)
         </td>
         <td>
-            <img width="150" height="150" src="@Url.Action("convertirImagen", "Home", new {codigoDepa = item.COD_DEP})" />
+            S/.@Html.DisplayFor(modelItem => item.PRECIO)
         </td>
         <td>
-            @Html.ActionLink("Detalle", "Details", new { id = item.COD_DEP }) 
+            <img style="border:solid" width="300" height="150" src="@Url.Action("convertirImagen", "Home", new {codigoDepa = item.COD_DEP})" />
+        </td>
+        <td>
+            @Html.ActionLink("Seleccionar", "Details", new { id = item.COD_DEP }) 
         </td>
     </tr>
 }

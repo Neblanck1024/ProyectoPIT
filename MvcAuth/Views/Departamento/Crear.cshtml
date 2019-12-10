@@ -1,109 +1,151 @@
-﻿@model MvcAuth.Models.Departamento
+﻿@model MvcAuth.Datos.DepaMemViewModel
 
-@{
-    ViewBag.Title = "Crear";
-}
+<style>
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
 
-<h2>Registro de Departamento</h2>
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+</style>
 
-
-@using (Html.BeginForm("Crear", "Departamento", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-
-<div class="form-horizontal">
-    <h4>Departamento</h4>
+<div style="background: linear-gradient(to bottom, #326487, white 20%, orange); margin:100px; border:dashed; padding:50px">
+    <h2 style="color:#F4623A; font-weight:bold">Registro de Departamento</h2>
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.Label("Descripcion", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+    @using (Html.BeginForm("Crear", "Departamento", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group" style="width:70%;">
+                @Html.Label("Titulo ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.departamento.titulo, new { htmlAttributes = new { @class = "form-control", style = "width:100%;" } })
+                    @Html.ValidationMessageFor(model => model.departamento.titulo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="width:30%;">
+                @Html.Label("Tipo de Departamento", htmlAttributes: new { @class = "control-label col-md-2", style = "display:inline;" })
+                <div class="col-md-10">
+                    @try
+                    {
+                        @Html.DropDownListFor(model => model.departamento.tipo, ViewBag.tipo as SelectList, "Seleccione", new { @class = "form-control", style = "width:80%;" })
+                        @Html.ValidationMessageFor(model => model.departamento.tipo, "", new { @class = "text-danger" })
+                    }
+
+                    catch (Exception)
+                    {
+                    }
+
+                </div>
+            </div>
+
+            <div class="form-group" style="width:30%;">
+                @Html.Label("Número de Piso", htmlAttributes: new { @class = "control-label col-md-2", style = "display:inline;" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.departamento.numpiso, new { htmlAttributes = new { @class = "form-control", style = "width:50%;" } })
+                    @Html.ValidationMessageFor(model => model.departamento.numhabi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="width:30%;">
+                @Html.Label("Número de habitaciones", htmlAttributes: new { @class = "control-label col-md-2", style = "display:inline;" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.departamento.numhabi, new { htmlAttributes = new { @class = "form-control", style = "width:80%;" } })
+                    @Html.ValidationMessageFor(model => model.departamento.numhabi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="width:40%;">
+                @Html.Label("Precio ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.departamento.precio, new { htmlAttributes = new { @class = "form-control", style = "width:80%;" } })
+                    @Html.ValidationMessageFor(model => model.departamento.precio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" , style="width:60%;">
+                @Html.Label("Foto ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.foto, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <input class="btn-file" type="file" name="imagenCarga" value="" />
+                    @Html.ValidationMessageFor(model => model.departamento.foto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="width:40%;">
+                @Html.Label("Distrito", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @try
+                    {
+                        @Html.DropDownListFor(model => model.departamento.idDistrito, ViewBag.distrito as SelectList, "Seleccione", new { @class = "form-control", style = "width:80%;" })
+                        @Html.ValidationMessageFor(model => model.departamento.idDistrito, "", new { @class = "text-danger" })
+                    }
+
+                    catch (Exception)
+                    {
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.departamento.idUsuario, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.departamento.idUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="width:100%;">
+                @Html.Label("Dirección de Departamentos", htmlAttributes: new { @class = "control-label col-md-2", style = "display:inline;" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.departamento.direccion, new { htmlAttributes = new { @class = "form-control", style = "width:100%;" } })
+                    @Html.ValidationMessageFor(model => model.departamento.direccion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" , style="width:50%;">
+                @Html.Label("Descripción de Departamentos", htmlAttributes: new { @class = "control-label col-md-2", style = "display:inline;" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.departamento.descripcion, new { @rows = 10, @cols = 50 })
+                    @Html.ValidationMessageFor(model => model.departamento.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" , style="width:50%;">
+                @Html.Label("Servicio de Departamentos", htmlAttributes: new { @class = "control-label col-md-2", style = "display:inline;" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.departamento.servicios, new { @rows = 10, @cols = 50 })
+                    @Html.ValidationMessageFor(model => model.departamento.servicios, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="display:contents; text-align:center">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Publicar" class="btn btn-success" />
+                    @Html.ActionLink("Volver", "Index", "Home")
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Tipo de Departamento", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @try
-            {
-                @Html.DropDownListFor(model => model.tipo, ViewBag.tipo as SelectList, "Seleccione", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
-            }
-
-            catch (Exception)
-            {
-            }
-
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Número de Piso", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.numpiso, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.numpiso, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Número de habitaciones", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.numhabi, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.numhabi, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Precio", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.precio, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Foto", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @*@Html.EditorFor(model => model.foto, new { htmlAttributes = new { @class = "form-control" } })*@
-            <input type="file" name="imagenCarga" value="" />
-            @Html.ValidationMessageFor(model => model.foto, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Distrito", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @try
-            {
-                @Html.DropDownListFor(model => model.idDistrito, ViewBag.distrito as SelectList, "Seleccione", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idDistrito, "", new { @class = "text-danger" })
-            }
-
-            catch (Exception)
-            {
-            }
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.HiddenFor(model => model.idUsuario, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.idUsuario, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Publicar" class="btn btn-success" />
-            @Html.ActionLink("Volver", "Index", "Home")
-        </div>
-    </div>
+    }
 </div>
-}
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

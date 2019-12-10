@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MvcAuth.Models.CLIENTEMEMBRESIA>
+<br /><br /><br /><br /><br /><br /><br />
+
+<table class="table">
+    <tr>
+        <th style="display:none;">
+            @Html.DisplayNameFor(model => model.ID_CLIENTEMEMBRESIA)
+        </th>
+        <th>
+            @Html.DisplayName("TIPO DE MEMBRESÍA")
+        </th>
+        <th>
+            @Html.DisplayName("USUARIO")
+        </th>
+        <th>
+            @Html.DisplayName("FECHA INICIO")
+        </th>
+        <th>
+            @Html.DisplayName("FECHA FIN")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="display:none;">
+            @Html.DisplayFor(modelItem => item.ID_CLIENTEMEMBRESIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MEMBRESIA.DES_MEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUsers.nombreCompleto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FEC_FIN)
+        </td>
+    </tr>
+}
+
+</table>
